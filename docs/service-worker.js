@@ -1,7 +1,7 @@
 const CACHE_NAME = 'project-color-create-v1';
 const urlsToCache = [
   "./App.js",
-  "./style.js",
+  "./style.css",
   "./lib/ColorFilter.js",
   "./lib/createjs-2013.02.12.min.js",
   "./lib/jquery-1.5.1.min.js",

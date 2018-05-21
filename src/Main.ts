@@ -18,7 +18,7 @@ export class Main {
 
   public manager: ViewManager;
 
-  static FONT_NAME: string = "Impact";
+  static FONT_NAME: string = "sans-serif";
   static SCALE: number;
   static STAGE_WIDTH: number = 320;
   static STAGE_HEIGHT: number = 480;
@@ -28,6 +28,11 @@ export class Main {
 
   constructor() {
     this.canvas = <HTMLCanvasElement>document.getElementById("canv");
+
+    this.canvas.height = innerHeight;
+    this.canvas.width = innerWidth;
+
+
     this.stage = new createjs.Stage(this.canvas);
 
     Main.SCALE = this.canvas.height / Main.HEIGHT;

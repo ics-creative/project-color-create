@@ -3,8 +3,8 @@
  * User: kawakatsu
  * Date: 13/04/25
  * Time: 13:42
- * To change this template use File | Settings | File Templates.
  */
+import { ColorRGB } from "./lib/ColorRGB";
 
 export class ColorRect extends createjs.Container {
   color: ColorRGB;

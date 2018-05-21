@@ -1,3 +1,5 @@
+import { ColorRGB } from "./lib/ColorRGB";
+
 /**
  * Created with JetBrains WebStorm.
  * User: kawakatsu
@@ -6,6 +8,7 @@
  * To change this template use File | Settings | File Templates.
  */
 import { Main } from "./Main";
+import { TargetReticle } from "./TargetReticle";
 import { Util } from "./Util";
 
 export class ResultCover extends createjs.Container {

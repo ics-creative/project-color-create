@@ -25,29 +25,24 @@ export class TitleView extends View {
     this.addChild(this.btnShape);
     this.btnShape.x = (Main.STAGE_WIDTH >> 1) - 93;
     this.btnShape.y = 495 - 133;
-    this.btnShape.addEventListener("click", (): void => {
+    this.btnShape.on("click", (): void => {
       this.dispatchEvent("start", this);
     });
-    this.btnShape.addEventListener(
-      "mousedown",
-      (event: createjs.MouseEvent): void => {
-        createjs.Tween.get(this.btnShape, { override: true }).to(
-          { alpha: 0.5 },
-          250,
-          createjs.Ease.cubicOut
-        );
+    this.btnShape.on("mousedown", (event: createjs.MouseEvent): void => {
+      createjs.Tween.get(this.btnShape, { override: true }).to(
+        { alpha: 0.5 },
+        250,
+        createjs.Ease.cubicOut
+      );
+    });
 
-        event.addEventListener("mouseup", (): void => {
-          createjs.Tween.get(this.btnShape, { override: true }).to(
-            { alpha: 1.0 },
-            250,
-            createjs.Ease.cubicOut
-          );
-
-          event.removeAllEventListeners("mouseup");
-        });
-      }
-    );
+    this.btnShape.on("mouseup", (): void => {
+      createjs.Tween.get(this.btnShape, { override: true }).to(
+        { alpha: 1.0 },
+        250,
+        createjs.Ease.cubicOut
+      );
+    });
 
     Util.addText(
       this,
@@ -76,8 +71,6 @@ export class TitleView extends View {
       "Start"
     ).textAlign =
       "center";
-
-    console.log("hoge");
   }
 
   //	onTick() {

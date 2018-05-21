@@ -5,8 +5,9 @@
  * Time: 13:42
  * To change this template use File | Settings | File Templates.
  */
+import { ColorRGB } from "./lib/ColorRGB";
 
-class TouchCircle extends createjs.Container {
+export class TouchCircle extends createjs.Container {
   initX: number;
   initY: number;
   dMin: number;

@@ -7,8 +7,11 @@
  */
 import { ColorParticle } from "./ColorParticle";
 import { ColorRect } from "./ColorRect";
+import { ColorRGB } from "./lib/ColorRGB";
 import { Main } from "./Main";
 import { ResultCover } from "./ResultCover";
+import { TargetReticle } from "./TargetReticle";
+import { TouchCircle } from "./TouchCircle";
 import { Util } from "./Util";
 import { View } from "./View";
 
@@ -65,26 +68,17 @@ export class GameView extends View {
   init(): void {
     this.canvas = <HTMLCanvasElement>document.getElementById("canv");
 
-    this.stage.addEventListener(
-      "stagemousedown",
-      (event: createjs.MouseEvent) => {
-        this.canvas_touchStartHandler(event);
-      }
-    );
+    this.stage.on("stagemousedown", (event: createjs.MouseEvent) => {
+      this.canvas_touchStartHandler(event);
+    });
 
-    this.stage.addEventListener(
-      "stagemousemove",
-      (event: createjs.MouseEvent) => {
-        this.canvas_touchMoveHandler(event);
-      }
-    );
+    this.stage.on("stagemousemove", (event: createjs.MouseEvent) => {
+      this.canvas_touchMoveHandler(event);
+    });
 
-    this.stage.addEventListener(
-      "stagemouseup",
-      (event: createjs.MouseEvent) => {
-        this.canvas_touchEndHandler(event);
-      }
-    );
+    this.stage.on("stagemouseup", (event: createjs.MouseEvent) => {
+      this.canvas_touchEndHandler(event);
+    });
 
     Util.addText(
       this,
@@ -197,7 +191,7 @@ export class GameView extends View {
     this.cover = new ResultCover();
     this.cover.alpha = 0.0;
     this.addChild(this.cover);
-    this.cover.addEventListener("next", (): void => {
+    this.cover.on("next", (): void => {
       this.next();
     });
 

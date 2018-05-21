@@ -5,8 +5,9 @@
  * Time: 13:42
  * To change this template use File | Settings | File Templates.
  */
+import { ColorRGB } from "./lib/ColorRGB";
 
-class TargetReticle extends createjs.Container {
+export class TargetReticle extends createjs.Container {
   color: ColorRGB;
   shape: createjs.Shape;
 

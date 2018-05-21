@@ -5,7 +5,7 @@
  * Time: 9:10
  * To change this template use File | Settings | File Templates.
  */
-class ScoreData {
+export class ScoreData {
   public time: number;
   public r: number;
   public g: number;

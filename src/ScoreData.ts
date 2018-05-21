@@ -6,15 +6,14 @@
  * To change this template use File | Settings | File Templates.
  */
 class ScoreData {
-	public time:number;
-	public r:number;
-	public g:number;
-	public b:number;
-	public average:number;
-	public total:number;
-	public target:number;
-	public result:number;
+  public time: number;
+  public r: number;
+  public g: number;
+  public b: number;
+  public average: number;
+  public total: number;
+  public target: number;
+  public result: number;
 
-	constructor() {
-	}
+  constructor() {}
 }

@@ -23,7 +23,7 @@ export class ResultView extends View {
   }
 
   tests(total: number, target: number, result: number): ScoreData {
-    var s: ScoreData = new ScoreData();
+    const s: ScoreData = new ScoreData();
     s.total = total;
     s.target = target;
     s.result = result;
@@ -31,7 +31,7 @@ export class ResultView extends View {
   }
 
   init(): void {
-    var scoreList: ScoreData[] = <ScoreData[]>this.manager.datas[0];
+    const scoreList: ScoreData[] = <ScoreData[]>this.manager.datas[0];
 
     //		scoreList = [];
     //		scoreList[0] = this.tests(1000, 0xFF, 0xFFFF);
@@ -40,7 +40,7 @@ export class ResultView extends View {
 
     this.canvas = <HTMLCanvasElement>document.getElementById("canv");
 
-    var textResult: createjs.Text = Util.addText(
+    const textResult: createjs.Text = Util.addText(
       this,
       "36px " + Main.FONT_NAME,
       "#FFFFFF",
@@ -49,12 +49,12 @@ export class ResultView extends View {
       "Result"
     );
 
-    var str: string = "";
-    var roundTotal: number = 0;
-    var length: number = scoreList.length;
-    var textList: createjs.Text[] = [];
-    for (var i = 0; i < length; i++) {
-      var score: ScoreData = scoreList[i];
+    let str: string = "";
+    let roundTotal: number = 0;
+    const length: number = scoreList.length;
+    const textList: createjs.Text[] = [];
+    for (let i = 0; i < length; i++) {
+      const score: ScoreData = scoreList[i];
       str += "Round" + (i + 1) + ": " + score.total + "\n";
       roundTotal += score.total;
 
@@ -69,7 +69,7 @@ export class ResultView extends View {
     }
     //		Util.addText(this, "24px " + Main.FONT_NAME, "#FFFFFF", 116 - 32, 234 - 133, str);
 
-    var textYour: createjs.Text = Util.addText(
+    const textYour: createjs.Text = Util.addText(
       this,
       "36px " + Main.FONT_NAME,
       "#FFFFFF",
@@ -87,9 +87,9 @@ export class ResultView extends View {
     );
     this.textTotal.textAlign = "center";
 
-    var con: createjs.Container = new createjs.Container();
+    let con: createjs.Container = new createjs.Container();
     this.addChild(con);
-    var s: createjs.Shape = Util.getRoundRectShape(187, 35, 5, "#FFFFFF", 1);
+    let s: createjs.Shape = Util.getRoundRectShape(187, 35, 5, "#FFFFFF", 1);
     s.x = -93;
     s.y = -17;
     con.addChild(s);
@@ -106,7 +106,7 @@ export class ResultView extends View {
     this.btnTweet.x = Main.STAGE_WIDTH >> 1;
     this.btnTweet.y = 495 - 133;
     this.btnTweet.addEventListener("click", (): void => {
-      var url: string =
+      const url: string =
         "http://twitter.com/?status=ColorCreate SCORE : " +
         roundTotal +
         " %23ColorCreate %23createjsjp";
@@ -183,7 +183,7 @@ export class ResultView extends View {
       .wait(400)
       .to({ alpha: 1.0 }, 200, createjs.Ease.getPowOut(2));
 
-    for (var i = 0; i < length; i++) {
+    for (let i = 0; i < length; i++) {
       textList[i].alpha = 0;
       createjs.Tween.get(textList[i])
         .wait(800 + i * 350)

@@ -23,9 +23,9 @@ export class ViewManager {
     console.log("gotoView");
     this.datas = $datas;
 
-    var view: View;
-    var length: number = this.viewList.length;
-    for (var i = 0; i < length; i++) {
+    let view: View;
+    const length: number = this.viewList.length;
+    for (let i = 0; i < length; i++) {
       if (this.viewList[i].sceneId == $sceneId) {
         view = this.viewList[i];
         break;
@@ -36,8 +36,8 @@ export class ViewManager {
       return;
     }
 
-    var tween: createjs.Tween = createjs.Tween.get(this, { paused: false });
-    // var tween:createjs.Tween = createjs.Tween.get(this, {paused: true});
+    const tween: createjs.Tween = createjs.Tween.get(this, { paused: false });
+    // const tween:createjs.Tween = createjs.Tween.get(this, {paused: true});
     if (this.currentView != null) {
       //
       tween

@@ -92,9 +92,9 @@ export class TouchCircle extends createjs.Container {
   }
 
   getDPercent(currentX: number, currentY: number): number {
-    var dx: number = currentX - this.initX;
-    var dy: number = currentY - this.initY;
-    var percent =
+    const dx: number = currentX - this.initX;
+    const dy: number = currentY - this.initY;
+    let percent =
       (Math.sqrt(dx * dx + dy * dy) - this.dMin) / (this.dMax - this.dMin);
     percent = percent < 0 ? 0 : percent;
     percent = percent > 1 ? 1 : percent;
@@ -131,7 +131,7 @@ export class TouchCircle extends createjs.Container {
     this.y = yy;
     //		this.text.text = this.colorName + ":" + textValue;
 
-    var line: createjs.Shape = this.line;
+    const line: createjs.Shape = this.line;
     line.graphics.clear();
     line.graphics.beginStroke(new ColorRGB(this.baseColor).getRGBString());
     line.graphics.moveTo(this.initX - xx, this.initY - yy);

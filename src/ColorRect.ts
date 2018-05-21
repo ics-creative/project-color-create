@@ -17,7 +17,7 @@ export class ColorRect extends createjs.Container {
 
     this.color = new ColorRGB();
 
-    var s: createjs.Shape = new createjs.Shape();
+    const s: createjs.Shape = new createjs.Shape();
     this.addChild(s);
     s.graphics.beginStroke("#666666");
     s.graphics.drawCircle(0, 0, 50);

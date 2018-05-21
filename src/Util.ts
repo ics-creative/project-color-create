@@ -13,7 +13,7 @@ export class Util extends createjs.Container {
     yy: number,
     text: string
   ): createjs.Text {
-    var tf: createjs.Text = new createjs.Text();
+    const tf: createjs.Text = new createjs.Text();
     tf.font = font;
     tf.color = color;
     parent.addChild(tf);
@@ -29,7 +29,7 @@ export class Util extends createjs.Container {
     color: string,
     alpha: number
   ): createjs.Shape {
-    var s: createjs.Shape = new createjs.Shape();
+    const s: createjs.Shape = new createjs.Shape();
     s.graphics.beginFill(color);
     s.graphics.drawRect(0, 0, w, h);
     s.graphics.endFill();
@@ -44,7 +44,7 @@ export class Util extends createjs.Container {
     color: string,
     alpha: number
   ): createjs.Shape {
-    var s: createjs.Shape = new createjs.Shape();
+    const s: createjs.Shape = new createjs.Shape();
     s.graphics.beginFill(color);
     s.graphics.drawRoundRect(0, 0, w, h, r);
     s.graphics.endFill();

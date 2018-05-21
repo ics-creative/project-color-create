@@ -44,9 +44,6 @@ export class Main {
       (this.canvas.width - Main.STAGE_WIDTH * Main.SCALE) >> 1;
     this.stage.x = Main.STAGE_OFFSET_X;
 
-    //		this.stats = new Stats();
-    //		(<HTMLDivElement>document.getElementById("stats")).appendChild(this.stats.domElement);
-
     createjs.Ticker.framerate = 60;
     createjs.Ticker.timingMode = createjs.Ticker.RAF;
 
@@ -59,24 +56,24 @@ export class Main {
 
     this.manager = new ViewManager();
 
-    var titleView: TitleView = new TitleView("title");
+    const titleView: TitleView = new TitleView("title");
     titleView.addToStage(this.stage);
     this.manager.addView(titleView);
-    titleView.addEventListener("start", (): void => {
+    titleView.on("start", (): void => {
       this.manager.gotoView("game");
     });
 
-    var gameView: GameView = new GameView("game");
+    const gameView: GameView = new GameView("game");
     gameView.addToStage(this.stage);
     this.manager.addView(gameView);
-    gameView.addEventListener("result", (event: any): void => {
+    gameView.on("result", (event: any): void => {
       this.manager.gotoView("result", [(<GameView>event.target).scoreList]);
     });
 
-    var resultView: ResultView = new ResultView("result");
+    const resultView: ResultView = new ResultView("result");
     resultView.addToStage(this.stage);
     this.manager.addView(resultView);
-    resultView.addEventListener("retry", (): void => {
+    resultView.on("retry", (): void => {
       this.manager.gotoView("game");
     });
 

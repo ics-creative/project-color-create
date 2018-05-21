@@ -112,14 +112,14 @@ export class GameView extends View {
     );
     this.textTime.textAlign = "center";
 
-    var rect: ColorRect = new ColorRect();
+    let rect: ColorRect = new ColorRect();
     rect.drawRect(0xffffff, 45);
     this.addChild(rect);
     rect.x = 224 + 45 - 32;
     rect.y = 215 + 45 - 133;
     this.targetRect = rect;
 
-    var rect: ColorRect = new ColorRect();
+    rect = new ColorRect();
     rect.drawRect(0xffffff, 45);
     this.addChild(rect);
     rect.x = 74 + 45 - 32;
@@ -139,11 +139,11 @@ export class GameView extends View {
     this.usedCircles = [];
     this.currentParticleList = [];
     this.currentTouchList = [];
-    var names: string[] = ["r", "g", "b"];
-    var colors: number[] = [0xff0000, 0x00ff00, 0x0000ff];
-    var colorParticle: ColorParticle;
-    for (var i: number = 0; i < 3; i++) {
-      var circle: TouchCircle = new TouchCircle(
+    const names: string[] = ["r", "g", "b"];
+    const colors: number[] = [0xff0000, 0x00ff00, 0x0000ff];
+    let colorParticle: ColorParticle;
+    for (let i: number = 0; i < 3; i++) {
+      const circle: TouchCircle = new TouchCircle(
         names[i],
         10,
         105,
@@ -162,7 +162,7 @@ export class GameView extends View {
       this.currentTouchList[i] = null;
     }
 
-    var centerCircle: TouchCircle = new TouchCircle("", 5, 0, 0);
+    const centerCircle: TouchCircle = new TouchCircle("", 5, 0, 0);
     centerCircle.drawCircle(0xffffff, 20);
     this.addChild(centerCircle);
     centerCircle.visible = false;
@@ -205,9 +205,9 @@ export class GameView extends View {
   onTick() {
     if (this.state == 0 || this.state == 1) {
       this.theta += 0.01;
-      var length: number = this.currentTouchList.length;
-      for (var i = 0; i < length; i++) {
-        var circle: TouchCircle = this.usedCircles[i];
+      const length: number = this.currentTouchList.length;
+      for (let i = 0; i < length; i++) {
+        const circle: TouchCircle = this.usedCircles[i];
         if (this.currentTouchList[i] != null) {
           //ついてく
           circle.x +=
@@ -219,7 +219,7 @@ export class GameView extends View {
             (this.currentTouchList[i].stageY / Main.SCALE - circle.y) * 0.4;
         } else {
           //くるくる
-          var theta2: number = this.theta + i * this.thetaDelay;
+          const theta2: number = this.theta + i * this.thetaDelay;
           circle.x +=
             (this.centerPointX +
               this.particleRange * Math.cos(theta2) -
@@ -258,16 +258,16 @@ export class GameView extends View {
       return;
     }
 
-    var circleLength: number = this.currentTouchList.length;
+    const circleLength: number = this.currentTouchList.length;
 
-    var nx: number = (event.stageX - Main.STAGE_OFFSET_X) / Main.SCALE;
-    var ny: number = event.stageY / Main.SCALE;
-    var rangeList: Distance[] = [];
-    for (var i = 0; i < circleLength; i++) {
+    const nx: number = (event.stageX - Main.STAGE_OFFSET_X) / Main.SCALE;
+    const ny: number = event.stageY / Main.SCALE;
+    const rangeList: Distance[] = [];
+    for (let i = 0; i < circleLength; i++) {
       if (this.currentTouchList[i] == null) {
-        var targetCircle: TouchCircle = this.usedCircles[i];
-        var dx: number = nx - targetCircle.x;
-        var dy: number = ny - targetCircle.y;
+        const targetCircle: TouchCircle = this.usedCircles[i];
+        const dx: number = nx - targetCircle.x;
+        const dy: number = ny - targetCircle.y;
         rangeList.push(new Distance(i, dx * dx + dy * dy));
       }
     }
@@ -278,7 +278,7 @@ export class GameView extends View {
     }
 
     //3つホードルドしてなければ抜ける
-    for (var i = 0; i < circleLength; i++) {
+    for (let i = 0; i < circleLength; i++) {
       if (this.currentTouchList[i] == null) {
         return;
       }
@@ -292,15 +292,15 @@ export class GameView extends View {
     this.state = 2;
     this.startTime = new Date().getTime();
 
-    var arr: createjs.MouseEvent[] = this.currentTouchList;
+    const arr: createjs.MouseEvent[] = this.currentTouchList;
 
-    var touch: createjs.MouseEvent;
-    var circle: TouchCircle;
+    let touch: createjs.MouseEvent;
+    let circle: TouchCircle;
 
-    var circleLength: number = this.currentTouchList.length;
-    var xx: number = 0;
-    var yy: number = 0;
-    for (var j = 0; j < circleLength; j++) {
+    const circleLength: number = this.currentTouchList.length;
+    let xx: number = 0;
+    let yy: number = 0;
+    for (let j = 0; j < circleLength; j++) {
       touch = arr[j];
       xx += (touch.stageX - Main.STAGE_OFFSET_X) / Main.SCALE;
       yy += touch.stageY / Main.SCALE;
@@ -314,7 +314,7 @@ export class GameView extends View {
     this.gpParticle.y = yy;
     this.gpParticle.visible = true;
 
-    for (var i: number = 0; i < circleLength; i++) {
+    for (let i: number = 0; i < circleLength; i++) {
       touch = arr[i];
       circle = this.usedCircles[i];
       circle.init(touch.pointerID, xx, yy);
@@ -338,9 +338,9 @@ export class GameView extends View {
   }
 
   canvas_touchMoveHandler(event: createjs.MouseEvent) {
-    var length3: number = this.currentTouchList.length;
+    const length3: number = this.currentTouchList.length;
 
-    for (var l = 0; l < length3; l++) {
+    for (let l = 0; l < length3; l++) {
       if (
         this.currentTouchList[l] &&
         this.currentTouchList[l].pointerID == event.pointerID
@@ -354,20 +354,20 @@ export class GameView extends View {
       return;
     }
 
-    var col: ColorRGB = new ColorRGB();
-    var touch: createjs.MouseEvent;
-    var circle: TouchCircle;
-    var circleLength: number = this.usedCircles.length;
-    for (var j: number = 0; j < circleLength; j++) {
+    const col: ColorRGB = new ColorRGB();
+    let touch: createjs.MouseEvent;
+    let circle: TouchCircle;
+    let circleLength: number = this.usedCircles.length;
+    for (let j: number = 0; j < circleLength; j++) {
       circle = this.usedCircles[j];
       touch = this.currentTouchList[j];
 
-      var percent: number = circle.getDPercent(
+      const percent: number = circle.getDPercent(
         (touch.stageX - Main.STAGE_OFFSET_X) / Main.SCALE,
         touch.stageY / Main.SCALE
       );
-      var colValue: number = (0xff * percent) | 0;
-      var colUint: number;
+      const colValue: number = (0xff * percent) | 0;
+      let colUint: number;
       switch (circle.colorName) {
         case "r":
           col.setR(colValue);
@@ -400,31 +400,31 @@ export class GameView extends View {
     }
     this.currentRect.drawRect(col.getUint(), 45);
 
-    var targetColor: ColorRGB = this.targetRect.color;
-    var resultColor: ColorRGB = this.currentRect.color;
-    var t: number;
-    var c: number;
-    var pointScale: number;
+    const targetColor: ColorRGB = this.targetRect.color;
+    const resultColor: ColorRGB = this.currentRect.color;
+    let t: number;
+    let c: number;
+    let pointScale: number;
 
     t = targetColor.getR();
     pointScale = 255 - t;
     pointScale = t > pointScale ? t : pointScale;
     c = resultColor.getR();
-    var rP = ((1 - Math.abs(c - t) / pointScale) * 100) | 0;
+    let rP = ((1 - Math.abs(c - t) / pointScale) * 100) | 0;
     rP = rP < 0 ? 0 : rP;
     t = targetColor.getG();
     pointScale = 255 - t;
     pointScale = t > pointScale ? t : pointScale;
     c = resultColor.getG();
-    var gP = ((1 - Math.abs(c - t) / pointScale) * 100) | 0;
+    let gP = ((1 - Math.abs(c - t) / pointScale) * 100) | 0;
     gP = gP < 0 ? 0 : gP;
     t = targetColor.getB();
     pointScale = 255 - t;
     pointScale = t > pointScale ? t : pointScale;
     c = resultColor.getB();
-    var bP = ((1 - Math.abs(c - t) / pointScale) * 100) | 0;
+    let bP = ((1 - Math.abs(c - t) / pointScale) * 100) | 0;
     bP = bP < 0 ? 0 : bP;
-    var perfect: number = (rP + gP + bP) / 300;
+    const perfect: number = (rP + gP + bP) / 300;
 
     this.gp.drawCircle(col.getUint(), 15 + perfect * 15);
     this.gpParticle.setOnlyColor(
@@ -435,9 +435,9 @@ export class GameView extends View {
   }
 
   canvas_touchEndHandler(event: createjs.MouseEvent) {
-    var length3: number = this.currentTouchList.length;
+    const length3: number = this.currentTouchList.length;
 
-    for (var l = 0; l < length3; l++) {
+    for (let l = 0; l < length3; l++) {
       if (
         this.currentTouchList[l] &&
         this.currentTouchList[l].pointerID == event.pointerID
@@ -451,10 +451,10 @@ export class GameView extends View {
       return;
     }
 
-    var end: boolean = false;
-    var circle: TouchCircle;
-    var circleLength: number = this.usedCircles.length;
-    for (var j: number = 0; j < circleLength; j++) {
+    let end: boolean = false;
+    let circle: TouchCircle;
+    const circleLength: number = this.usedCircles.length;
+    for (let j: number = 0; j < circleLength; j++) {
       circle = this.usedCircles[j];
       if (event.pointerID == circle.identifier) {
         end = true;
@@ -470,9 +470,9 @@ export class GameView extends View {
   }
 
   end(): void {
-    //		var circle:TouchCircle;
-    //		var circleLength:number = this.usedCircles.length;
-    //		for (var j:number = 0; j < circleLength; j++) {
+    //		const circle:TouchCircle;
+    //		const circleLength:number = this.usedCircles.length;
+    //		for (let j:number = 0; j < circleLength; j++) {
     //			circle = this.usedCircles[j];
     //		}
     this.state = 3;
@@ -480,14 +480,14 @@ export class GameView extends View {
   }
 
   check(): void {
-    var t: number;
-    var c: number;
-    var rP: number;
-    var gP: number;
-    var bP: number;
-    var targetColor: ColorRGB = this.targetRect.color;
-    var resultColor: ColorRGB = this.currentRect.color;
-    var pointScale: number;
+    let t: number;
+    let c: number;
+    let rP: number;
+    let gP: number;
+    let bP: number;
+    const targetColor: ColorRGB = this.targetRect.color;
+    const resultColor: ColorRGB = this.currentRect.color;
+    let pointScale: number;
 
     t = targetColor.getR();
     pointScale = 255 - t;
@@ -510,12 +510,12 @@ export class GameView extends View {
     bP = ((1 - Math.abs(c - t) / pointScale) * 100) | 0;
     bP = bP < 0 ? 0 : bP;
 
-    var score: number = (rP + gP + bP) / 3;
-    var ss: number = score >> 2;
-    var totalScore: number =
+    const score: number = (rP + gP + bP) / 3;
+    const ss: number = score >> 2;
+    const totalScore: number =
       ss * ss * ss * (100 + this.timeLeft * this.timeLeft) / 1000;
 
-    var scoreData: ScoreData = new ScoreData();
+    const scoreData: ScoreData = new ScoreData();
     scoreData.time = this.timeLeft;
     scoreData.r = rP | 0;
     scoreData.g = gP | 0;
@@ -539,8 +539,8 @@ export class GameView extends View {
   start(): void {
     this.gp.visible = false;
     this.gpParticle.visible = false;
-    var circleLength: number = this.usedCircles.length;
-    for (var j: number = 0; j < circleLength; j++) {
+    const circleLength: number = this.usedCircles.length;
+    for (let j: number = 0; j < circleLength; j++) {
       this.usedCircles[j].initDraw(this.usedCircles[j].baseColor, 25);
     }
     this.reticle.visible = false;
@@ -548,9 +548,9 @@ export class GameView extends View {
       .to({ alpha: 0.0 }, 300, createjs.Ease.getPowOut(2))
       .set({ visible: false });
 
-    var rr: number = 20 + 235 * Math.random();
-    var gg: number = 20 + 235 * Math.random();
-    var bb: number = 20 + 235 * Math.random();
+    const rr: number = 20 + 235 * Math.random();
+    const gg: number = 20 + 235 * Math.random();
+    const bb: number = 20 + 235 * Math.random();
     this.targetRect.drawRect((rr << 16) | (gg << 8) | bb | 0, 45);
     //		this.targetRect.drawRect(0xFF<<(Math.random()*3|0)*8 | 0, 45);
     //		console.log(this.targetRect.color.getRGBString());
@@ -605,9 +605,9 @@ export class GameView extends View {
     this.gp = null;
     this.gpParticle = null;
 
-    for (var i: number = 0; i < 3; i++) {
-      var circle: TouchCircle = this.usedCircles[i];
-      var colorParticle: ColorParticle = this.currentParticleList[i];
+    for (let i: number = 0; i < 3; i++) {
+      const circle: TouchCircle = this.usedCircles[i];
+      const colorParticle: ColorParticle = this.currentParticleList[i];
     }
     this.usedCircles = null;
     this.currentTouchList = null;

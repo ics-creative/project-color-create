@@ -21,29 +21,29 @@ export class TargetReticle extends createjs.Container {
   drawReticle(col: number, min: number, c1: number, c2: number, max: number) {
     this.color.setUint(col);
 
-    var g: createjs.Graphics = this.shape.graphics;
+    const g: createjs.Graphics = this.shape.graphics;
 
-    var color: string = this.color.getRGBString();
+    const color: string = this.color.getRGBString();
     g.clear();
     this.drawStroke(g, color, min);
     this.drawStroke(g, color, c1);
     this.drawStroke(g, color, c2);
     this.drawStroke(g, color, max);
 
-    var cos: number[] = [];
-    var sin: number[] = [];
-    var split: number = 3;
-    for (var j = 0; j < split; j++) {
-      var theta: number = -Math.PI / 2 + j * Math.PI * 2 / split;
+    const cos: number[] = [];
+    const sin: number[] = [];
+    const split: number = 3;
+    for (let j = 0; j < split; j++) {
+      const theta: number = -Math.PI / 2 + j * Math.PI * 2 / split;
       cos[j] = Math.cos(theta);
       sin[j] = Math.sin(theta);
     }
 
-    var length: number = ((max - min + 3) / 6) | 0;
-    for (var i = 0; i < length; i++) {
-      for (var j = 0; j < split; j++) {
-        var dc: number = 6 * cos[j] * i;
-        var ds: number = 6 * sin[j] * i;
+    const length: number = ((max - min + 3) / 6) | 0;
+    for (let i = 0; i < length; i++) {
+      for (let j = 0; j < split; j++) {
+        const dc: number = 6 * cos[j] * i;
+        const ds: number = 6 * sin[j] * i;
         g.moveTo(min * cos[j] + dc, min * sin[j] + ds);
         g.lineTo(
           min * cos[j] + 3 * cos[j] + dc,

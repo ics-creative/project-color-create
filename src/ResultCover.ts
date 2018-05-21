@@ -46,7 +46,7 @@ export class ResultCover extends createjs.Container {
     this.cover.x = -Main.STAGE_OFFSET_X;
     this.addChild(this.cover);
 
-    var reticle: TargetReticle = new TargetReticle();
+    const reticle: TargetReticle = new TargetReticle();
     this.addChild(reticle);
     reticle.x = 155 + 37 - 32;
     reticle.y = 312 + 37 - 133;
@@ -153,7 +153,7 @@ export class ResultCover extends createjs.Container {
       }
     );
 
-    var next: createjs.Text = Util.addText(
+    const next: createjs.Text = Util.addText(
       this.containerButton,
       "24px " + Main.FONT_NAME,
       "#000000",
@@ -172,7 +172,7 @@ export class ResultCover extends createjs.Container {
   }
 
   setData(data: ScoreData) {
-    var col: ColorRGB = new ColorRGB();
+    const col: ColorRGB = new ColorRGB();
 
     col.setUint(data.result);
     this.textResult.color = col.getRGBString();

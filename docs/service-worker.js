@@ -1,13 +1,5 @@
-const CACHE_NAME = 'project-color-create-v1';
+const CACHE_NAME = 'project-color-create-v2';
 const urlsToCache = [
-  "./App.js",
-  "./style.css",
-  "./lib/ColorFilter.js",
-  "./lib/createjs-2013.02.12.min.js",
-  "./lib/jquery-1.5.1.min.js",
-  "./lib/movieclip-0.6.0.min.js",
-  "./lib/particleEmitterJs-0.5.0.js",
-  "./lib/Stats.js",
 ];
 
 // service-worker.js

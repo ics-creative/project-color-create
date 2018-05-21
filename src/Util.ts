@@ -6,9 +6,8 @@
  * To change this template use File | Settings | File Templates.
  */
 
-/// <reference path="lib/easeljs.d.ts" />
-/// <reference path="lib/ColorRGB.ts" />
-class Util extends createjs.Container {
+
+export class Util extends createjs.Container {
 	static addText(parent:createjs.Container, font:string, color:string, xx:number, yy:number, text:string):createjs.Text {
 		var tf:createjs.Text = new createjs.Text();
 		tf.font = font;

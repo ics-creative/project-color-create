@@ -5,9 +5,8 @@
  * Time: 11:44
  * To change this template use File | Settings | File Templates.
  */
-/// <reference path="easeljs.d.ts" />
-module createjs
-{
+
+
 	export class ParticleEmitter extends createjs.DisplayObject {
 		constructor(image:any);
 
@@ -49,4 +48,3 @@ module createjs
 		static Emit:number;
 		static OneShot:number;
 	}
-}

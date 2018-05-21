@@ -5,23 +5,14 @@
  * Time: 15:48
  * To change this template use File | Settings | File Templates.
  */
+import {ColorParticle} from './ColorParticle';
+import {ColorRect} from './ColorRect';
+import {Main} from './Main';
+import {ResultCover} from './ResultCover';
+import {Util} from './Util';
+import {View} from './View';
 
-/// <reference path="lib/easeljs.d.ts" />
-/// <reference path="lib/tweenjs.d.ts" />
-
-/// <reference path="Main.ts" />
-/// <reference path="Util.ts" />
-/// <reference path="View.ts" />
-/// <reference path="ScoreData.ts" />
-/// <reference path="TouchCircle.ts" />
-/// <reference path="ColorRect.ts" />
-/// <reference path="TargetReticle.ts" />
-/// <reference path="ColorParticle.ts" />
-/// <reference path="ResultCover.ts" />
-
-/// <reference path="lib/ColorRGB.ts" />
-
-class GameView extends View {
+export class GameView extends View {
 	public TIME_LIMIT:number = 10.0;
 	public ROUND_MAX:number = 3;
 	public thetaDelay:number;
@@ -75,15 +66,15 @@ class GameView extends View {
 		this.canvas = <HTMLCanvasElement>document.getElementById("canv");
 
 
-		this.stage.addEventListener("stagemousedown", function (event:createjs.MouseEvent) => {
+		this.stage.addEventListener("stagemousedown",  (event:createjs.MouseEvent) => {
 			this.canvas_touchStartHandler(event);
 		});
 
-		this.stage.addEventListener("stagemousemove", function (event:createjs.MouseEvent) => {
+		this.stage.addEventListener("stagemousemove",  (event:createjs.MouseEvent) => {
 			this.canvas_touchMoveHandler(event);
 		});
 
-		this.stage.addEventListener("stagemouseup", function (event:createjs.MouseEvent) => {
+		this.stage.addEventListener("stagemouseup",  (event:createjs.MouseEvent) => {
 			this.canvas_touchEndHandler(event);
 		});
 
@@ -162,14 +153,13 @@ class GameView extends View {
 		});
 
 		this.round = this.ROUND_MAX;
-		this.scoreList = new ScoreData[];
+		this.scoreList = [];
 
 
 		this.theta = 0;
 		this.start();
 
-		createjs.Ticker.addListener(this);
-		this.tick = this.onTick;
+    createjs.Ticker.on("tick", this.onTick, this);
 	}
 
 	onTick() {
@@ -379,7 +369,7 @@ class GameView extends View {
 			return;
 		}
 
-		var end:bool = false;
+		var end:boolean = false;
 		var circle:TouchCircle;
 		var circleLength:number = this.usedCircles.length;
 		for (var j:number = 0; j < circleLength; j++) {
@@ -535,7 +525,7 @@ class GameView extends View {
 
 		this.scoreList = null;
 
-		this.tick = null;
+		this.onTick = null;
 
 		this.removeAllChildren();
 	}

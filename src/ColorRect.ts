@@ -6,9 +6,8 @@
  * To change this template use File | Settings | File Templates.
  */
 
-/// <reference path="lib/easeljs.d.ts" />
-/// <reference path="lib/ColorRGB.ts" />
-class ColorRect extends createjs.Container {
+
+export class ColorRect extends createjs.Container {
 	color:ColorRGB;
 	shape:createjs.Shape;
 

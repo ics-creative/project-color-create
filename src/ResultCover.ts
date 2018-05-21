@@ -5,14 +5,10 @@
  * Time: 13:42
  * To change this template use File | Settings | File Templates.
  */
+import {Main} from './Main';
+import {Util} from './Util';
 
-/// <reference path="lib/easeljs.d.ts" />
-/// <reference path="lib/ColorRGB.ts" />
-/// <reference path="Main.ts" />
-/// <reference path="Util.ts" />
-/// <reference path="TargetReticle.ts" />
-/// <reference path="ScoreData.ts" />
-class ResultCover extends createjs.Container {
+export class ResultCover extends createjs.Container {
 	color:ColorRGB;
 	cover:createjs.Shape;
 	btnShape:createjs.Shape;
@@ -29,7 +25,7 @@ class ResultCover extends createjs.Container {
 
 	reticle:TargetReticle;
 
-	play:bool;
+	play:boolean;
 	r:number = 0;
 	g:number = 0;
 	b:number = 0;

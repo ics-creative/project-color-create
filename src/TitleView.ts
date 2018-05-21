@@ -1,3 +1,6 @@
+import {Main} from './Main';
+import {Util} from './Util';
+
 /**
  * Created with JetBrains WebStorm.
  * User: kawakatsu
@@ -5,18 +8,11 @@
  * Time: 15:48
  * To change this template use File | Settings | File Templates.
  */
+import {View} from './View';
 
-/// <reference path="lib/easeljs.d.ts" />
-/// <reference path="lib/tweenjs.d.ts" />
-
-/// <reference path="View.ts" />
-/// <reference path="Main.ts" />
-/// <reference path="Util.ts" />
-
-class TitleView extends View {
+export class TitleView extends View {
 	public canvas:HTMLCanvasElement;
 	public btnShape:createjs.Shape;
-
 
 	constructor($sceneId:string) {
 		super($sceneId);
@@ -47,6 +43,8 @@ class TitleView extends View {
 		Util.addText(this, "48px " + Main.FONT_NAME, "#FFFFFF", Main.STAGE_WIDTH >> 1, 294 - 133, "Color Create").textAlign = "center";
 		Util.addText(this, "18px " + Main.FONT_NAME, "#FFFFFF", Main.STAGE_WIDTH >> 1, 361 - 133, "powered by ICS INC.").textAlign = "center";
 		Util.addText(this, "24px " + Main.FONT_NAME, "#000000", Main.STAGE_WIDTH >> 1, 498 - 133, "Start").textAlign = "center";
+
+		console.log("hoge")
 	}
 
 //	onTick() {

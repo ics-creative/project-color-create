@@ -1,14 +1,21 @@
-/// <reference path="lib/easeljs.d.ts" />
-/// <reference path="lib/tweenjs.d.ts" />
+import {ColorParticle} from './ColorParticle';
+import {GameView} from './GameView';
+import {ResultView} from './ResultView';
+import {TitleView} from './TitleView';
+import {ViewManager} from './ViewManager';
 
-/// <reference path="lib/Stats.ts" />
 
-/// <reference path="ViewManager.ts" />
-/// <reference path="TitleView.ts" />
-/// <reference path="GameView.ts" />
-/// <reference path="ResultView.ts" />
+window.addEventListener("DOMContentLoaded", () =>{
+  ColorParticle.particleImage = new Image();
+  ColorParticle.particleImage.onload = () => {
+    new Main();
+  };
+  ColorParticle.particleImage.src = "images/particle_base.png";
+})
 
-class Main {
+
+
+export class Main {
 	public width:number;
 	public height:number;
 
@@ -26,17 +33,7 @@ class Main {
 	static HEIGHT:number = Main.STAGE_HEIGHT;
 	static STAGE_OFFSET_X:number = 0;
 
-	static main():void {
-		//alert("Hello World!");
 
-		ColorParticle.particleImage = new Image();
-		ColorParticle.particleImage.onload = assetLoadComplete;
-		ColorParticle.particleImage.src = "images/particle_base.png";
-	}
-
-	static assetLoadComplete():void {
-		new Main();
-	}
 
 	constructor() {
 		this.canvas = <HTMLCanvasElement>document.getElementById("canv");
@@ -56,8 +53,10 @@ class Main {
 //		(<HTMLDivElement>document.getElementById("stats")).appendChild(this.stats.domElement);
 
 
-		createjs.Ticker.setFPS(60);
-		createjs.Ticker.addListener(this);
+		createjs.Ticker.framerate = 60;
+		createjs.Ticker.timingMode = createjs.Ticker.RAF;
+
+		createjs.Ticker.on("tick", this.tick, this);
 		this.stage.enableMouseOver(60);
 
 		if (createjs.Touch.isSupported()) {
@@ -87,6 +86,7 @@ class Main {
 			this.manager.gotoView("game");
 		});
 
+		console.log("this.manager.gotoView")
 		this.manager.gotoView("title");
 //		this.manager.gotoView("result",[gameView.scoreList]);
 	}

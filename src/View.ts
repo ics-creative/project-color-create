@@ -5,12 +5,10 @@
  * Time: 15:48
  * To change this template use File | Settings | File Templates.
  */
+import {ViewManager} from './ViewManager';
 
-/// <reference path="lib/easeljs.d.ts" />
-/// <reference path="ViewManager.ts" />
-
-class View extends createjs.Container {
-	public stage:createjs.Stage;
+export class View extends createjs.Container {
+	// public stage:createjs.Stage;
 	public sceneId:string;
 	public showTime:number = 300;
 	public hideTime:number = 300;
@@ -22,8 +20,10 @@ class View extends createjs.Container {
 	}
 
 	public addToStage($stage:createjs.Stage) {
-		this.stage = $stage;
-		this.stage.addChild(this);
+		console.log("addToStage")
+		// this.stage = $stage;
+		// this.stage.addChild(this);
+    $stage.addChild(this);
 	}
 
 	public init():void {

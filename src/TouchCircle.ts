@@ -6,8 +6,7 @@
  * To change this template use File | Settings | File Templates.
  */
 
-/// <reference path="lib/easeljs.d.ts" />
-/// <reference path="lib/ColorRGB.ts" />
+
 class TouchCircle extends createjs.Container {
 	initX:number;
 	initY:number;

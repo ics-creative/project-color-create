@@ -1,3 +1,5 @@
+import {Main} from './Main';
+
 /**
  * Created with JetBrains WebStorm.
  * User: kawakatsu
@@ -5,23 +7,16 @@
  * Time: 15:48
  * To change this template use File | Settings | File Templates.
  */
+import {Util} from './Util';
+import {View} from './View';
 
-/// <reference path="lib/easeljs.d.ts" />
-/// <reference path="lib/tweenjs.d.ts" />
-
-/// <reference path="Main.ts" />
-/// <reference path="Util.ts" />
-/// <reference path="View.ts" />
-/// <reference path="ScoreData.ts" />
-/// <reference path="lib/ColorRGB.ts" />
-
-class ResultView extends View {
+export class ResultView extends View {
 	public canvas:HTMLCanvasElement;
 	public btnRetry:createjs.Container;
 	public btnTweet:createjs.Container;
 
 	textTotal:createjs.Text;
-	play:bool;
+	play:boolean;
 	totalScore:number;
 
 	constructor($sceneId:string) {

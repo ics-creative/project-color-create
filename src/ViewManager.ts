@@ -5,13 +5,9 @@
  * Time: 15:57
  * To change this template use File | Settings | File Templates.
  */
+import {View} from './View';
 
-/// <reference path="lib/easeljs.d.ts" />
-/// <reference path="lib/tweenjs.d.ts" />
-
-/// <reference path="View.ts" />
-
-class ViewManager {
+export class ViewManager {
 	public viewList:View[];
 	public currentView:View;
 	public datas:any[];
@@ -26,6 +22,7 @@ class ViewManager {
 	}
 
 	public gotoView($sceneId:string, $datas?:any[]):void {
+    console.log("gotoView")
 		this.datas = $datas;
 
 		var view:View;
@@ -41,7 +38,9 @@ class ViewManager {
 			return;
 		}
 
-		var tween:createjs.Tween = createjs.Tween.get(this, {paused: true});
+
+		var tween:createjs.Tween = createjs.Tween.get(this, {paused: false});
+		// var tween:createjs.Tween = createjs.Tween.get(this, {paused: true});
 		if (this.currentView != null) {
 			//
 			tween.call(this.currentView.hide, null, this.currentView).wait(this.currentView.hideTime).call(this.currentView.dispose, null, this.currentView);
@@ -49,6 +48,7 @@ class ViewManager {
 		this.currentView = view;
 		tween.call(this.currentView.init, null, this.currentView).call(this.currentView.show, null, this.currentView).wait(this.currentView.showTime);
 
-		tween.setPaused(false);
+		// tween.setPaused(false);
+
 	}
 }

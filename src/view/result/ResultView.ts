@@ -1,3 +1,4 @@
+import { CcButton } from "../../components/CcButton";
 import { Main } from "../../Main";
 import { ScoreData } from "../../data/ScoreData";
 
@@ -9,41 +10,30 @@ import { View } from "../View";
  * @since  13/05/07
  */
 export class ResultView extends View {
-  public canvas: HTMLCanvasElement;
-  public btnRetry: createjs.Container;
-  public btnTweet: createjs.Container;
+  private _btnRetry: CcButton;
+  private _btnTweet: CcButton;
 
-  private textTotal: createjs.Text;
-  private play: boolean;
-  private totalScore: number;
+  private _textTotal: createjs.Text;
+  private isPlaying: boolean;
+  private _totalScore: number;
 
   constructor($sceneId: string) {
     super($sceneId);
   }
 
-  private tests(total: number, target: number, result: number): ScoreData {
-    const s: ScoreData = new ScoreData();
-    s.total = total;
-    s.target = target;
-    s.result = result;
-    return s;
-  }
-
   public init(): void {
-    const scoreList: ScoreData[] = <ScoreData[]>this.manager.datas[0];
+    const scoreList: ScoreData[] = this.manager.datas[0] as ScoreData[];
 
-    //		scoreList = [];
-    //		scoreList[0] = this.tests(1000, 0xFF, 0xFFFF);
-    //		scoreList[1] = this.tests(1001, 0xFF, 0xFFFF);
-    //		scoreList[2] = this.tests(1002, 0xFF, 0xFFFF);
-
-    this.canvas = <HTMLCanvasElement>document.getElementById("canv");
+    // const scoreList = [];
+    // 		scoreList[0] = this.tests(1000, 0xFF, 0xFFFF);
+    // 		scoreList[1] = this.tests(1001, 0xFF, 0xFFFF);
+    // 		scoreList[2] = this.tests(1002, 0xFF, 0xFFFF);
 
     const textResult: createjs.Text = Util.addText(
       this,
       "36px " + Main.FONT_NAME,
       "#FFFFFF",
-      141 - 32,
+      Main.STAGE_WIDTH >> 1,
       166 - 133,
       "Result"
     );
@@ -61,22 +51,21 @@ export class ResultView extends View {
         this,
         "24px " + Main.FONT_NAME,
         "#FFFFFF",
-        116 - 32,
+        Main.STAGE_WIDTH >> 1,
         234 - 133 + i * 32,
-        "Round" + (i + 1) + ": " + score.total
+        "Round" + (i + 1) + " : " + score.total
       );
     }
-    //		Util.addText(this, "24px " + Main.FONT_NAME, "#FFFFFF", 116 - 32, 234 - 133, str);
 
     const textYour: createjs.Text = Util.addText(
       this,
       "36px " + Main.FONT_NAME,
       "#FFFFFF",
-      112 - 32,
+      Main.STAGE_WIDTH >> 1,
       356 - 133,
       "Your Score"
     );
-    this.textTotal = Util.addText(
+    this._textTotal = Util.addText(
       this,
       "56px " + Main.FONT_NAME,
       "#FFFFFF",
@@ -84,86 +73,27 @@ export class ResultView extends View {
       398 - 133,
       String(roundTotal)
     );
-    this.textTotal.textAlign = "center";
 
-    let con: createjs.Container = new createjs.Container();
-    this.addChild(con);
-    let s: createjs.Shape = Util.getRoundRectShape(187, 35, 5, "#FFFFFF", 1);
-    s.x = -93;
-    s.y = -17;
-    con.addChild(s);
-    Util.addText(
-      con,
-      "24px " + Main.FONT_NAME,
-      "#000000",
-      0,
-      -14,
-      "Tweet"
-    ).textAlign =
-      "center";
-    this.btnTweet = con;
-    this.btnTweet.x = Main.STAGE_WIDTH >> 1;
-    this.btnTweet.y = 495 - 133;
-    this.btnTweet.on("click", (): void => {
+    this._btnTweet = new CcButton(187, 35, "Tweet");
+    this._btnTweet.x = Main.STAGE_WIDTH >> 1;
+    this._btnTweet.y = 495 - 133;
+    this._btnTweet.on("click", (): void => {
       const url: string =
-        "http://twitter.com/?status=ColorCreate SCORE : " +
+        "https://twitter.com/?status=ColorCreate SCORE : " +
         roundTotal +
         " %23ColorCreate %23createjsjp";
       window.open(url);
     });
-    this.btnTweet.on("mousedown", (event: createjs.MouseEvent): void => {
-      createjs.Tween.get(this.btnTweet, { override: true }).to(
-        { alpha: 0.5 },
-        250,
-        createjs.Ease.cubicOut
-      );
-    });
-    this.btnTweet.on("mouseup", (): void => {
-      createjs.Tween.get(this.btnTweet, { override: true }).to(
-        { alpha: 1.0 },
-        250,
-        createjs.Ease.cubicOut
-      );
-    });
 
-    this.btnTweet.visible = false;
+    this._btnTweet.visible = true;
 
-    con = new createjs.Container();
-    this.addChild(con);
-    s = Util.getRoundRectShape(187, 35, 5, "#FFFFFF", 1);
-    s.x = -93;
-    s.y = -17;
-    con.addChild(s);
-    Util.addText(
-      con,
-      "24px " + Main.FONT_NAME,
-      "#000000",
-      0,
-      -14,
-      "Retry"
-    ).textAlign =
-      "center";
-    this.btnRetry = con;
-    this.btnRetry.x = Main.STAGE_WIDTH >> 1;
-    this.btnRetry.y = 545 - 133;
-    this.btnRetry.on("click", (): void => {
-      //
+    this._btnRetry = new CcButton(187, 35, "Retry");
+    this._btnRetry.x = Main.STAGE_WIDTH >> 1;
+    this._btnRetry.y = 545 - 133;
+    this.addChild(this._btnRetry);
+
+    this._btnRetry.on("click", (): void => {
       this.dispatchEvent("retry", this);
-    });
-    this.btnRetry.on("mousedown", (event: createjs.MouseEvent): void => {
-      createjs.Tween.get(this.btnRetry, { override: true }).to(
-        { alpha: 0.5 },
-        250,
-        createjs.Ease.cubicOut
-      );
-    });
-
-    this.btnRetry.on("mouseup", (): void => {
-      createjs.Tween.get(this.btnRetry, { override: true }).to(
-        { alpha: 1.0 },
-        250,
-        createjs.Ease.cubicOut
-      );
     });
 
     textResult.alpha = 0;
@@ -183,48 +113,48 @@ export class ResultView extends View {
       .wait(2200)
       .to({ alpha: 1.0 }, 300, createjs.Ease.getPowOut(2));
 
-    this.totalScore = 0;
-    this.textTotal.alpha = 0;
-    createjs.Tween.get(this.textTotal)
+    this._totalScore = 0;
+    this._textTotal.alpha = 0;
+    createjs.Tween.get(this._textTotal)
       .wait(2800)
       .to({ alpha: 1.0 }, 300, createjs.Ease.getPowOut(2));
     createjs.Tween.get(this)
       .wait(2900)
       .set({ r: 0, g: 0, b: 0 })
-      .to({ totalScore: roundTotal }, 400)
+      .to({ _totalScore: roundTotal }, 400)
       .call(this.onTick)
-      .set({ play: false });
+      .set({ isPlaying: false });
 
-    this.btnTweet.scaleX = 0.0;
-    this.btnTweet.scaleY = 0.0;
-    createjs.Tween.get(this.btnTweet)
+    this._btnTweet.scaleX = 0.0;
+    this._btnTweet.scaleY = 0.0;
+    createjs.Tween.get(this._btnTweet)
       .wait(3600)
       .to({ scaleX: 1.0, scaleY: 1.0 }, 300, createjs.Ease.getPowOut(5));
-    this.btnRetry.scaleX = 0.0;
-    this.btnRetry.scaleY = 0.0;
-    createjs.Tween.get(this.btnRetry)
+    this._btnRetry.scaleX = 0.0;
+    this._btnRetry.scaleY = 0.0;
+    createjs.Tween.get(this._btnRetry)
       .wait(3600)
       .to({ scaleX: 1.0, scaleY: 1.0 }, 300, createjs.Ease.getPowOut(5));
 
-    this.play = true;
+    this.isPlaying = true;
   }
 
   private onTick() {
-    if (!this.play) {
+    if (!this.isPlaying) {
       return;
     }
-    this.textTotal.text = String(Math.floor(this.totalScore));
+    this._textTotal.text = String(Math.floor(this._totalScore));
   }
 
   //override
   dispose() {
-    this.btnRetry.removeAllEventListeners("click");
-    this.btnRetry.removeAllEventListeners("mousedown");
-    this.btnTweet.removeAllEventListeners("click");
-    this.btnTweet.removeAllEventListeners("mousedown");
+    this._btnRetry.removeAllEventListeners("click");
+    this._btnRetry.dispose();
+    this._btnRetry = null;
 
-    this.btnRetry = null;
-    this.btnTweet = null;
+    this._btnTweet.removeAllEventListeners("click");
+    this._btnTweet.dispose();
+    this._btnTweet = null;
 
     this.removeAllChildren();
   }

@@ -30,12 +30,11 @@ export class ViewManager {
       }
     }
     if (view == null) {
-      console.log("do not exist sceneId");
       return;
     }
 
-    const tween: createjs.Tween = createjs.Tween.get(this, { paused: false });
-    // const tween:createjs.Tween = createjs.Tween.get(this, {paused: true});
+    // const tween: createjs.Tween = createjs.Tween.get(this, { paused: false });
+    const tween: createjs.Tween = createjs.Tween.get(this, { paused: true });
     if (this.currentView != null) {
       //
       tween
@@ -49,6 +48,6 @@ export class ViewManager {
       .call(this.currentView.show, null, this.currentView)
       .wait(this.currentView.showTime);
 
-    // tween.setPaused(false);
+    tween.setPaused(false);
   }
 }

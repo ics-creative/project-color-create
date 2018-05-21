@@ -2,7 +2,7 @@
  * @author ICS-Kawakatsu
  * @since  13/04/25
  */
-import { ColorRGB } from "../../lib/ColorRGB";
+import { ColorRGB } from "../../utils/ColorRGB";
 
 export class TargetReticle extends createjs.Container {
   private color: ColorRGB;

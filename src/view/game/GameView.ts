@@ -4,9 +4,9 @@
  */
 import { ColorParticle } from "./ColorParticle";
 import { ColorRect } from "./ColorRect";
-import { ColorRGB } from "../../lib/ColorRGB";
+import { ColorRGB } from "../../utils/ColorRGB";
 import { Main } from "../../Main";
-import { ResultCover } from "../result/ResultCover";
+import { ResultCover } from "./ResultCover";
 import { ScoreData } from "../../data/ScoreData";
 import { TargetReticle } from "./TargetReticle";
 import { TouchCircle } from "./TouchCircle";
@@ -17,8 +17,6 @@ export class GameView extends View {
   public TIME_LIMIT: number = 10.0;
   public ROUND_MAX: number = 3;
   public thetaDelay: number;
-
-  public canvas: HTMLCanvasElement;
 
   //system
   /*
@@ -64,8 +62,6 @@ export class GameView extends View {
   }
 
   public init(): void {
-    this.canvas = <HTMLCanvasElement>document.getElementById("canv");
-
     this.stage.on("stagemousedown", (event: createjs.MouseEvent) => {
       this.canvas_touchStartHandler(event);
     });
@@ -82,7 +78,7 @@ export class GameView extends View {
       this,
       "20px " + Main.FONT_NAME,
       "#FFFFFF",
-      96 - 32,
+      85,
       180 - 133,
       "You"
     );
@@ -90,7 +86,7 @@ export class GameView extends View {
       this,
       "20px " + Main.FONT_NAME,
       "#FFFFFF",
-      241 - 32,
+      235,
       180 - 133,
       "Target"
     );
@@ -98,13 +94,13 @@ export class GameView extends View {
       this,
       "20px " + Main.FONT_NAME,
       "#FFFFFF",
-      158 - 32,
+      Main.STAGE_WIDTH / 2,
       147 - 133,
       "Round"
     );
     this.textTime = Util.addText(
       this,
-      "48px " + Main.FONT_NAME,
+      "32px " + Main.FONT_NAME,
       "#FFFFFF",
       Main.STAGE_WIDTH >> 1,
       173 - 133,
@@ -181,10 +177,9 @@ export class GameView extends View {
       "50px " + Main.FONT_NAME,
       "#FFFFFF",
       0,
-      -25,
+      -20,
       "Start"
     );
-    this.textStart.textAlign = "center";
 
     this.cover = new ResultCover();
     this.cover.alpha = 0.0;
@@ -559,7 +554,7 @@ export class GameView extends View {
 
     this.textTime.text = "";
     this.textStart.text =
-      "Round " + (this.ROUND_MAX - this.round + 1) + " Start!";
+      "Round " + (this.ROUND_MAX - this.round + 1) + "\nStart!";
 
     this.textRound.text = "Round " + (this.ROUND_MAX - this.round + 1);
 
@@ -595,8 +590,6 @@ export class GameView extends View {
     this.stage.removeAllEventListeners("stagemousemove");
     this.stage.removeAllEventListeners("stagemouseup");
 
-    this.canvas = null;
-
     this.targetRect = null;
     this.currentRect = null;
 
@@ -621,8 +614,6 @@ export class GameView extends View {
     this.cover = null;
 
     this.scoreList = null;
-
-    this.onTick = null;
 
     this.removeAllChildren();
   }

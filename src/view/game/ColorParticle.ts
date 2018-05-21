@@ -1,4 +1,4 @@
-import { ColorRGB } from "../../lib/ColorRGB";
+import { ColorRGB } from "../../utils/ColorRGB";
 
 /**
  * @author ICS-Kawakatsu

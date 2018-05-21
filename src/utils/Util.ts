@@ -9,7 +9,9 @@ export class Util extends createjs.Container {
     color: string,
     xx: number,
     yy: number,
-    text: string
+    text: string,
+    textAlign: string = "center",
+    textBaseline: string = "middle"
   ): createjs.Text {
     const tf: createjs.Text = new createjs.Text();
     tf.font = font;
@@ -18,6 +20,8 @@ export class Util extends createjs.Container {
     tf.x = xx;
     tf.y = yy;
     tf.text = text;
+    tf.textAlign = textAlign;
+    tf.textBaseline = textBaseline;
     return tf;
   }
 

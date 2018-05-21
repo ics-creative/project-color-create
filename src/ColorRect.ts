@@ -1,8 +1,7 @@
 /**
- * Created with JetBrains WebStorm.
- * User: kawakatsu
- * Date: 13/04/25
- * Time: 13:42
+ *
+ * @author ICS-Kawakatsu
+ * @since  13/04/25
  */
 import { ColorRGB } from "./lib/ColorRGB";
 

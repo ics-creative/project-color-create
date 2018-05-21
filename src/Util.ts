@@ -1,9 +1,7 @@
 /**
- * Created with JetBrains WebStorm.
- * User: kawakatsu
- * Date: 13/04/25
- * Time: 13:42
- * To change this template use File | Settings | File Templates.
+ *
+ * @author ICS-Kawakatsu
+ * @since  13/04/25
  */
 
 export class Util extends createjs.Container {

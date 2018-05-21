@@ -2,11 +2,9 @@ import { Main } from "./Main";
 import { Util } from "./Util";
 
 /**
- * Created with JetBrains WebStorm.
- * User: kawakatsu
- * Date: 13/05/07
- * Time: 15:48
- * To change this template use File | Settings | File Templates.
+ *
+ * @author ICS-Kawakatsu
+ * @since  13/05/07
  */
 import { View } from "./View";
 

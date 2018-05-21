@@ -1,9 +1,7 @@
 /**
- * Created with JetBrains WebStorm.
- * User: kawakatsu
- * Date: 13/05/08
- * Time: 9:10
- * To change this template use File | Settings | File Templates.
+ *
+ * @author ICS-Kawakatsu
+ * @since  13/05/08
  */
 export class ScoreData {
   public time: number;

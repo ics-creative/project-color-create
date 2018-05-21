@@ -1,10 +1,8 @@
 /**
- * Created with JetBrains WebStorm.
- * User: kawakatsu
- * Date: 13/04/25
- * Time: 13:42
- * To change this template use File | Settings | File Templates.
+ * @author ICS-Kawakatsu
+ * @since  13/04/25
  */
+import { ColorRGB } from "./lib/ColorRGB";
 
 export class ColorParticle extends createjs.Container {
   static particleImage: HTMLImageElement;

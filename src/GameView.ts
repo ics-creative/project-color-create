@@ -1,15 +1,13 @@
 /**
- * Created with JetBrains WebStorm.
- * User: kawakatsu
- * Date: 13/05/07
- * Time: 15:48
- * To change this template use File | Settings | File Templates.
+ * @author ICS-Kawakatsu
+ * @since  13/05/07
  */
 import { ColorParticle } from "./ColorParticle";
 import { ColorRect } from "./ColorRect";
 import { ColorRGB } from "./lib/ColorRGB";
 import { Main } from "./Main";
 import { ResultCover } from "./ResultCover";
+import { ScoreData } from "./ScoreData";
 import { TargetReticle } from "./TargetReticle";
 import { TouchCircle } from "./TouchCircle";
 import { Util } from "./Util";

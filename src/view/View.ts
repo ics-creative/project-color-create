@@ -1,4 +1,4 @@
-import { ViewManager } from "./ViewManager";
+import { ViewManager } from "../managers/ViewManager";
 
 /**
  * @author ICS-Kawakatsu

@@ -1,8 +1,8 @@
-import { ColorParticle } from "./ColorParticle";
-import { GameView } from "./GameView";
-import { ResultView } from "./ResultView";
-import { TitleView } from "./TitleView";
-import { ViewManager } from "./ViewManager";
+import { ColorParticle } from "./view/game/ColorParticle";
+import { GameView } from "./view/game/GameView";
+import { ResultView } from "./view/result/ResultView";
+import { TitleView } from "./view/title/TitleView";
+import { ViewManager } from "./managers/ViewManager";
 
 window.addEventListener("DOMContentLoaded", () => {
   ColorParticle.particleImage = new Image();

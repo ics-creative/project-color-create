@@ -1,8 +1,8 @@
-import { Main } from "./Main";
-import { ScoreData } from "./ScoreData";
+import { Main } from "../../Main";
+import { ScoreData } from "../../data/ScoreData";
 
-import { Util } from "./Util";
-import { View } from "./View";
+import { Util } from "../../utils/Util";
+import { View } from "../View";
 
 /**
  * @author ICS-Kawakatsu

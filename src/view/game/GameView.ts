@@ -4,14 +4,14 @@
  */
 import { ColorParticle } from "./ColorParticle";
 import { ColorRect } from "./ColorRect";
-import { ColorRGB } from "./lib/ColorRGB";
-import { Main } from "./Main";
-import { ResultCover } from "./ResultCover";
-import { ScoreData } from "./ScoreData";
+import { ColorRGB } from "../../lib/ColorRGB";
+import { Main } from "../../Main";
+import { ResultCover } from "../result/ResultCover";
+import { ScoreData } from "../../data/ScoreData";
 import { TargetReticle } from "./TargetReticle";
 import { TouchCircle } from "./TouchCircle";
-import { Util } from "./Util";
-import { View } from "./View";
+import { Util } from "../../utils/Util";
+import { View } from "../View";
 
 export class GameView extends View {
   public TIME_LIMIT: number = 10.0;

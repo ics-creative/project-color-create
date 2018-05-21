@@ -1,9 +1,9 @@
-import { ColorRGB } from "./lib/ColorRGB";
+import { ColorRGB } from "../../lib/ColorRGB";
 
-import { Main } from "./Main";
-import { ScoreData } from "./ScoreData";
-import { TargetReticle } from "./TargetReticle";
-import { Util } from "./Util";
+import { Main } from "../../Main";
+import { ScoreData } from "../../data/ScoreData";
+import { TargetReticle } from "../game/TargetReticle";
+import { Util } from "../../utils/Util";
 
 /**
  * @author ICS-Kawakatsu

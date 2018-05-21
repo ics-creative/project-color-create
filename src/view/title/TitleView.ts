@@ -1,7 +1,7 @@
-import { Main } from "./Main";
-import { Util } from "./Util";
+import { Main } from "../../Main";
+import { Util } from "../../utils/Util";
 
-import { View } from "./View";
+import { View } from "../View";
 
 /**
  * @author ICS-Kawakatsu

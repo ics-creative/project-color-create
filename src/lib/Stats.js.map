@@ -1,0 +1,1 @@
+{"version":3,"file":"Stats.js","sources":["Stats.ts"],"names":["Stats","Stats.constructor","Stats.getDomElement","Stats.update"],"mappings":"AAQA;IACIA,SADEA,KAAKA;IAEPC,CAACA;IAEDD,gCAAAA;QACIE,OAAOA,IAAIA,CAACA;IAChBA,CAACA;IAIDF,yBAAAA;IACAG,CAACA;IACLH;AAACA,CAAAA,IAAA"}

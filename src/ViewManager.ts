@@ -1,10 +1,9 @@
+import { View } from "./View";
+
 /**
- *
  * @author ICS-Kawakatsu
  * @since  13/05/07
  */
-import { View } from "./View";
-
 export class ViewManager {
   public viewList: View[];
   public currentView: View;
@@ -20,7 +19,6 @@ export class ViewManager {
   }
 
   public gotoView($sceneId: string, $datas?: any[]): void {
-    console.log("gotoView");
     this.datas = $datas;
 
     let view: View;

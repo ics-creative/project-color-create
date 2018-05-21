@@ -63,7 +63,7 @@ export class GameView extends View {
     super($sceneId);
   }
 
-  init(): void {
+  public init(): void {
     this.canvas = <HTMLCanvasElement>document.getElementById("canv");
 
     this.stage.on("stagemousedown", (event: createjs.MouseEvent) => {
@@ -202,7 +202,7 @@ export class GameView extends View {
     createjs.Ticker.on("tick", this.onTick, this);
   }
 
-  onTick() {
+  private onTick() {
     if (this.state == 0 || this.state == 1) {
       this.theta += 0.01;
       const length: number = this.currentTouchList.length;
@@ -253,7 +253,7 @@ export class GameView extends View {
     }
   }
 
-  canvas_touchStartHandler(event: createjs.MouseEvent) {
+  private canvas_touchStartHandler(event: createjs.MouseEvent) {
     if (this.state != 1) {
       return;
     }
@@ -288,7 +288,7 @@ export class GameView extends View {
     this.startHandle(event);
   }
 
-  startHandle(event: createjs.MouseEvent) {
+  private startHandle(event: createjs.MouseEvent) {
     this.state = 2;
     this.startTime = new Date().getTime();
 
@@ -337,7 +337,7 @@ export class GameView extends View {
       .to({ rotation: 0 }, 300, createjs.Ease.backOut);
   }
 
-  canvas_touchMoveHandler(event: createjs.MouseEvent) {
+  private canvas_touchMoveHandler(event: createjs.MouseEvent) {
     const length3: number = this.currentTouchList.length;
 
     for (let l = 0; l < length3; l++) {
@@ -469,7 +469,7 @@ export class GameView extends View {
     this.end();
   }
 
-  end(): void {
+  private end(): void {
     //		const circle:TouchCircle;
     //		const circleLength:number = this.usedCircles.length;
     //		for (let j:number = 0; j < circleLength; j++) {
@@ -479,7 +479,7 @@ export class GameView extends View {
     this.check();
   }
 
-  check(): void {
+  private check(): void {
     let t: number;
     let c: number;
     let rP: number;
@@ -536,7 +536,7 @@ export class GameView extends View {
     );
   }
 
-  start(): void {
+  private start(): void {
     this.gp.visible = false;
     this.gpParticle.visible = false;
     const circleLength: number = this.usedCircles.length;

@@ -1,12 +1,10 @@
+import { ViewManager } from "./ViewManager";
+
 /**
- *
  * @author ICS-Kawakatsu
  * @since  13/05/07
  */
-import { ViewManager } from "./ViewManager";
-
 export class View extends createjs.Container {
-  // public stage:createjs.Stage;
   public sceneId: string;
   public showTime: number = 300;
   public hideTime: number = 300;
@@ -18,9 +16,6 @@ export class View extends createjs.Container {
   }
 
   public addToStage($stage: createjs.Stage) {
-    console.log("addToStage");
-    // this.stage = $stage;
-    // this.stage.addChild(this);
     $stage.addChild(this);
   }
 

@@ -1,28 +1,27 @@
 import { Main } from "./Main";
 import { ScoreData } from "./ScoreData";
 
-/**
- *
- * @author ICS-Kawakatsu
- * @since  13/05/07
- */
 import { Util } from "./Util";
 import { View } from "./View";
 
+/**
+ * @author ICS-Kawakatsu
+ * @since  13/05/07
+ */
 export class ResultView extends View {
   public canvas: HTMLCanvasElement;
   public btnRetry: createjs.Container;
   public btnTweet: createjs.Container;
 
-  textTotal: createjs.Text;
-  play: boolean;
-  totalScore: number;
+  private textTotal: createjs.Text;
+  private play: boolean;
+  private totalScore: number;
 
   constructor($sceneId: string) {
     super($sceneId);
   }
 
-  tests(total: number, target: number, result: number): ScoreData {
+  private tests(total: number, target: number, result: number): ScoreData {
     const s: ScoreData = new ScoreData();
     s.total = total;
     s.target = target;
@@ -30,7 +29,7 @@ export class ResultView extends View {
     return s;
   }
 
-  init(): void {
+  public init(): void {
     const scoreList: ScoreData[] = <ScoreData[]>this.manager.datas[0];
 
     //		scoreList = [];
@@ -105,33 +104,27 @@ export class ResultView extends View {
     this.btnTweet = con;
     this.btnTweet.x = Main.STAGE_WIDTH >> 1;
     this.btnTweet.y = 495 - 133;
-    this.btnTweet.addEventListener("click", (): void => {
+    this.btnTweet.on("click", (): void => {
       const url: string =
         "http://twitter.com/?status=ColorCreate SCORE : " +
         roundTotal +
         " %23ColorCreate %23createjsjp";
       window.open(url);
     });
-    this.btnTweet.addEventListener(
-      "mousedown",
-      (event: createjs.MouseEvent): void => {
-        createjs.Tween.get(this.btnTweet, { override: true }).to(
-          { alpha: 0.5 },
-          250,
-          createjs.Ease.cubicOut
-        );
-
-        event.addEventListener("mouseup", (): void => {
-          createjs.Tween.get(this.btnTweet, { override: true }).to(
-            { alpha: 1.0 },
-            250,
-            createjs.Ease.cubicOut
-          );
-
-          event.removeAllEventListeners("mouseup");
-        });
-      }
-    );
+    this.btnTweet.on("mousedown", (event: createjs.MouseEvent): void => {
+      createjs.Tween.get(this.btnTweet, { override: true }).to(
+        { alpha: 0.5 },
+        250,
+        createjs.Ease.cubicOut
+      );
+    });
+    this.btnTweet.on("mouseup", (): void => {
+      createjs.Tween.get(this.btnTweet, { override: true }).to(
+        { alpha: 1.0 },
+        250,
+        createjs.Ease.cubicOut
+      );
+    });
 
     this.btnTweet.visible = false;
 
@@ -153,30 +146,25 @@ export class ResultView extends View {
     this.btnRetry = con;
     this.btnRetry.x = Main.STAGE_WIDTH >> 1;
     this.btnRetry.y = 545 - 133;
-    this.btnRetry.addEventListener("click", (): void => {
+    this.btnRetry.on("click", (): void => {
       //
       this.dispatchEvent("retry", this);
     });
-    this.btnRetry.addEventListener(
-      "mousedown",
-      (event: createjs.MouseEvent): void => {
-        createjs.Tween.get(this.btnRetry, { override: true }).to(
-          { alpha: 0.5 },
-          250,
-          createjs.Ease.cubicOut
-        );
+    this.btnRetry.on("mousedown", (event: createjs.MouseEvent): void => {
+      createjs.Tween.get(this.btnRetry, { override: true }).to(
+        { alpha: 0.5 },
+        250,
+        createjs.Ease.cubicOut
+      );
+    });
 
-        event.addEventListener("mouseup", (): void => {
-          createjs.Tween.get(this.btnRetry, { override: true }).to(
-            { alpha: 1.0 },
-            250,
-            createjs.Ease.cubicOut
-          );
-
-          event.removeAllEventListeners("mouseup");
-        });
-      }
-    );
+    this.btnRetry.on("mouseup", (): void => {
+      createjs.Tween.get(this.btnRetry, { override: true }).to(
+        { alpha: 1.0 },
+        250,
+        createjs.Ease.cubicOut
+      );
+    });
 
     textResult.alpha = 0;
     createjs.Tween.get(textResult)
@@ -221,7 +209,7 @@ export class ResultView extends View {
     this.play = true;
   }
 
-  onTick() {
+  private onTick() {
     if (!this.play) {
       return;
     }

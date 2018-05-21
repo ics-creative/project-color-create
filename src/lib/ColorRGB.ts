@@ -1,5 +1,4 @@
 /**
- *
  * @author ICS-Kawakatsu
  * @since  13/04/26
  */

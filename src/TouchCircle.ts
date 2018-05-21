@@ -1,25 +1,26 @@
+import { ColorRGB } from "./lib/ColorRGB";
+
 /**
- *
  * @author ICS-Kawakatsu
  * @since  13/04/25
  */
-import { ColorRGB } from "./lib/ColorRGB";
-
 export class TouchCircle extends createjs.Container {
-  initX: number;
-  initY: number;
-  dMin: number;
-  dMax: number;
-  dPercent: number;
-  identifier: number;
-  colorName: string;
-  color: ColorRGB;
-  shape: createjs.Shape;
-  shape2: createjs.Shape;
-  text: createjs.Text;
-  line: createjs.Shape;
-  baseColor: number;
-  innerSize: number;
+  public colorName: string;
+  public color: ColorRGB;
+  public identifier: number;
+  public baseColor: number;
+
+  private initX: number;
+  private initY: number;
+  private dMin: number;
+  private dMax: number;
+  private dPercent: number;
+  private innerSize: number;
+
+  private shape: createjs.Shape;
+  private shape2: createjs.Shape;
+  private text: createjs.Text;
+  private line: createjs.Shape;
 
   constructor(
     $colorName: string,
@@ -59,7 +60,7 @@ export class TouchCircle extends createjs.Container {
     this.shape.alpha = 0.2;
   }
 
-  init($identifier: number, $initX: number, $initY: number) {
+  public init($identifier: number, $initX: number, $initY: number) {
     this.identifier = $identifier;
 
     this.initX = $initX;
@@ -71,13 +72,13 @@ export class TouchCircle extends createjs.Container {
     this.line.graphics.clear();
   }
 
-  initDraw(col: number, size: number) {
+  public initDraw(col: number, size: number) {
     this.line.graphics.clear();
     this.text.text = "";
     this.drawCircle(col, size);
   }
 
-  drawCircle(col: number, size: number) {
+  public drawCircle(col: number, size: number) {
     this.color.setUint(col);
 
     this.shape.graphics.clear();
@@ -91,7 +92,7 @@ export class TouchCircle extends createjs.Container {
     this.shape2.graphics.endFill();
   }
 
-  getDPercent(currentX: number, currentY: number): number {
+  public getDPercent(currentX: number, currentY: number): number {
     const dx: number = currentX - this.initX;
     const dy: number = currentY - this.initY;
     let percent =
@@ -102,13 +103,13 @@ export class TouchCircle extends createjs.Container {
     return this.dPercent;
   }
 
-  setText(xx: number, yy: number, value: string): void {
+  private setText(xx: number, yy: number, value: string): void {
     this.text.x = xx - this.initX;
     this.text.y = yy - this.initY;
     this.text.text = this.colorName + ":" + value;
   }
 
-  setData(
+  public setData(
     col: number,
     size: number,
     xx: number,

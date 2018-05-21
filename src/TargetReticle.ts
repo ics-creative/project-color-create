@@ -1,13 +1,12 @@
 /**
- *
  * @author ICS-Kawakatsu
  * @since  13/04/25
  */
 import { ColorRGB } from "./lib/ColorRGB";
 
 export class TargetReticle extends createjs.Container {
-  color: ColorRGB;
-  shape: createjs.Shape;
+  private color: ColorRGB;
+  private shape: createjs.Shape;
 
   constructor() {
     super();
@@ -18,7 +17,13 @@ export class TargetReticle extends createjs.Container {
     this.color = new ColorRGB();
   }
 
-  drawReticle(col: number, min: number, c1: number, c2: number, max: number) {
+  public drawReticle(
+    col: number,
+    min: number,
+    c1: number,
+    c2: number,
+    max: number
+  ) {
     this.color.setUint(col);
 
     const g: createjs.Graphics = this.shape.graphics;

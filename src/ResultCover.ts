@@ -1,36 +1,34 @@
 import { ColorRGB } from "./lib/ColorRGB";
 
-/**
- *
- * @author ICS-Kawakatsu
- * @since  13/04/25
- */
 import { Main } from "./Main";
 import { ScoreData } from "./ScoreData";
 import { TargetReticle } from "./TargetReticle";
 import { Util } from "./Util";
 
+/**
+ * @author ICS-Kawakatsu
+ * @since  13/04/25
+ */
 export class ResultCover extends createjs.Container {
-  color: ColorRGB;
-  cover: createjs.Shape;
-  btnShape: createjs.Shape;
-  textResult: createjs.Text;
-  textTarget: createjs.Text;
-  textTime: createjs.Text;
-  textR: createjs.Text;
-  textG: createjs.Text;
-  textB: createjs.Text;
-  textScore: createjs.Text;
+  private color: ColorRGB;
+  private cover: createjs.Shape;
+  private btnShape: createjs.Shape;
+  private textResult: createjs.Text;
+  private textTarget: createjs.Text;
+  private textTime: createjs.Text;
+  private textR: createjs.Text;
+  private textG: createjs.Text;
+  private textB: createjs.Text;
+  private textScore: createjs.Text;
 
-  containerScore: createjs.Container;
-  containerButton: createjs.Container;
+  private containerScore: createjs.Container;
+  private containerButton: createjs.Container;
 
-  reticle: TargetReticle;
-
-  play: boolean;
-  r: number = 0;
-  g: number = 0;
-  b: number = 0;
+  private reticle: TargetReticle;
+  private play: boolean;
+  private r: number = 0;
+  private g: number = 0;
+  private b: number = 0;
 
   constructor() {
     super();
@@ -171,7 +169,7 @@ export class ResultCover extends createjs.Container {
     this.play = false;
   }
 
-  setData(data: ScoreData) {
+  public setData(data: ScoreData) {
     const col: ColorRGB = new ColorRGB();
 
     col.setUint(data.result);
@@ -254,7 +252,7 @@ export class ResultCover extends createjs.Container {
     this.play = true;
   }
 
-  onTick() {
+  private onTick() {
     if (!this.play) {
       return;
     }

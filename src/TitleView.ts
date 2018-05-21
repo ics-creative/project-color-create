@@ -1,13 +1,12 @@
 import { Main } from "./Main";
 import { Util } from "./Util";
 
+import { View } from "./View";
+
 /**
- *
  * @author ICS-Kawakatsu
  * @since  13/05/07
  */
-import { View } from "./View";
-
 export class TitleView extends View {
   public canvas: HTMLCanvasElement;
   public btnShape: createjs.Shape;
@@ -16,7 +15,7 @@ export class TitleView extends View {
     super($sceneId);
   }
 
-  init(): void {
+  public init(): void {
     this.canvas = <HTMLCanvasElement>document.getElementById("canv");
 
     this.btnShape = Util.getRoundRectShape(187, 35, 5, "#FFFFFF", 1);

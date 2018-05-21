@@ -13,12 +13,8 @@ window.addEventListener("DOMContentLoaded", () => {
 });
 
 export class Main {
-  public width: number;
-  public height: number;
-
   public stage: createjs.Stage;
   public canvas: HTMLCanvasElement;
-  public stats: Stats;
 
   public manager: ViewManager;
 
@@ -82,8 +78,7 @@ export class Main {
     //		this.manager.gotoView("result",[gameView.scoreList]);
   }
 
-  tick() {
+  private tick() {
     this.stage.update();
-    //		this.stats.update();
   }
 }

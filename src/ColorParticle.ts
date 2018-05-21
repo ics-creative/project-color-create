@@ -1,9 +1,9 @@
+import { ColorRGB } from "./lib/ColorRGB";
+
 /**
  * @author ICS-Kawakatsu
  * @since  13/04/25
  */
-import { ColorRGB } from "./lib/ColorRGB";
-
 export class ColorParticle extends createjs.Container {
   static particleImage: HTMLImageElement;
 

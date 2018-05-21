@@ -1,10 +1,9 @@
+import { ColorRGB } from "./lib/ColorRGB";
+
 /**
- *
  * @author ICS-Kawakatsu
  * @since  13/04/25
  */
-import { ColorRGB } from "./lib/ColorRGB";
-
 export class ColorRect extends createjs.Container {
   color: ColorRGB;
   shape: createjs.Shape;
@@ -24,7 +23,7 @@ export class ColorRect extends createjs.Container {
     s.graphics.endFill();
   }
 
-  drawRect(col: number, r: number) {
+  public drawRect(col: number, r: number) {
     this.color.setUint(col);
 
     this.shape.graphics.clear();

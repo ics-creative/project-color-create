@@ -38,9 +38,21 @@
   </div>
   <div id="stats"></div>
 
+  <!-- Global site tag (gtag.js) - Google Analytics -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=UA-34243464-4"></script>
   <script>
-    navigator.serviceWorker.register('./service-worker.js');
-  </script>
+    window.dataLayer = window.dataLayer || [];
 
+    function gtag() {
+      dataLayer.push(arguments);
+    }
+
+    if (location.href.indexOf('ics-creative.github.io') > -1) {
+      gtag('js', new Date());
+      gtag('config', 'UA-34243464-4');
+
+      navigator.serviceWorker.register('./service-worker.js');
+    }
+  </script>
 </body>
 </html>

@@ -135,7 +135,7 @@ export class GameView extends View {
     this.currentTouchList = [];
     const names: string[] = ["r", "g", "b"];
     const colors: number[] = [0xff0000, 0x00ff00, 0x0000ff];
-    let colorParticle: ColorParticle;
+
     for (let i: number = 0; i < 3; i++) {
       const circle: TouchCircle = new TouchCircle(
         names[i],
@@ -149,7 +149,7 @@ export class GameView extends View {
       circle.y = this.centerPointY;
       this.usedCircles[i] = circle;
 
-      colorParticle = new ColorParticle();
+      let colorParticle = new ColorParticle();
       this.addChild(colorParticle);
       this.currentParticleList[i] = colorParticle;
 
@@ -162,9 +162,9 @@ export class GameView extends View {
     centerCircle.visible = false;
     this.gp = centerCircle;
 
-    colorParticle = new ColorParticle();
-    this.addChild(colorParticle);
-    this.gpParticle = colorParticle;
+    const cp = new ColorParticle();
+    this.addChild(cp);
+    this.gpParticle = cp;
 
     this.containerTextStart = new createjs.Container();
     this.addChild(this.containerTextStart);
@@ -301,6 +301,7 @@ export class GameView extends View {
     xx /= circleLength;
     yy /= circleLength;
 
+    console.log(xx, yy);
     this.gp.init(0, xx, yy);
     this.gp.visible = true;
     this.gpParticle.x = xx;

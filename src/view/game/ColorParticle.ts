@@ -29,10 +29,10 @@ export class ColorParticle extends createjs.Container {
         width: 1473,
         height: 824,
         emitFrequency: 40,
-        startX: 737,
-        startXVariance: "0",
-        startY: 412,
-        startYVariance: "0",
+        startX: 0,
+        startXVariance: 0,
+        startY: 0,
+        startYVariance: 0,
         initialDirection: 87,
         initialDirectionVariance: 360,
         initialSpeed: 3,
@@ -40,8 +40,8 @@ export class ColorParticle extends createjs.Container {
         friction: 0.0315,
         accelerationSpeed: 0,
         accelerationDirection: 0,
-        startScale: "1",
-        startScaleVariance: "0.52",
+        startScale: 1,
+        startScaleVariance: 0.52,
         finishScale: 0,
         finishScaleVariance: "0",
         lifeSpan: 30,
@@ -65,46 +65,6 @@ export class ColorParticle extends createjs.Container {
       }
       // パラメーターJSONのコピー＆ペースト ここまで---
     );
-
-    //
-    // var emitter = new ParticleEmitter(ColorParticle.particleImage);
-    // emitter.position = new createjs.Point(0, 0);
-    //
-    // emitter.emitterType = ParticleEmitterType.Emit;
-    // emitter.emissionRate = 45;
-    // emitter.maxParticles = 100;
-    // emitter.life = 1000;
-    // emitter.lifeVar = 0;
-    // emitter.speed = 100;
-    // emitter.speedVar = 30;
-    // emitter.positionVarX = 10;
-    // emitter.positionVarY = 10;
-    // emitter.accelerationX = 0;
-    // emitter.accelerationY = 0;
-    // emitter.radialAcceleration = 0;
-    // emitter.radialAccelerationVar = 0;
-    // emitter.tangentalAcceleration = 0;
-    // emitter.tangentalAccelerationVar = 0;
-    // emitter.angle = 0;
-    // emitter.angleVar = 360;
-    // emitter.startSpin = 0;
-    // emitter.startSpinVar = 0;
-    // emitter.endSpin = null;
-    // emitter.endSpinVar = null;
-    // emitter.startColor = [200, 128, 255];
-    // emitter.startColorVar = [60, 25, 25];
-    // emitter.startOpacity = 1;
-    // emitter.endColor = null;
-    // emitter.endColorVar = null;
-    // emitter.endOpacity = null;
-    // emitter.startSize = 50;
-    // emitter.startSizeVar = 20;
-    // emitter.endSize = 0;
-    // emitter.endSizeVar = 10;
-    //
-    // this.addChild(emitter);
-    // this.emitter = emitter;
-    //
     this.color = new ColorRGB();
 
     this.on("tick", this.onTick, this);
@@ -117,12 +77,6 @@ export class ColorParticle extends createjs.Container {
 
   setData(col: number, xx: number, yy: number, speed: number) {
     this.color.setUint(col);
-    //
-    // this.emitter.startColor = this.color.getRGB();
-    // this.emitter.startColorVar = [25*4, 25*4, 25*4];
-    // this.emitter.position.x = xx;
-    // this.emitter.position.y = yy;
-    // this.emitter.speed = speed;
 
     const rgbArr = this.color.getRGB();
     const hslArr = rgbToHsl(rgbArr[0], rgbArr[1], rgbArr[2]);
@@ -139,7 +93,8 @@ export class ColorParticle extends createjs.Container {
     this.particleSystem.startColor = data;
     this.particleSystem.startX = xx;
     this.particleSystem.startY = yy;
-    // this.particleSystem.initialSpeed = speed / 100;
+
+    this.particleSystem.initialSpeed = speed / 10;
   }
 
   setOnlyColor(col: number, speed: number, size: number) {
@@ -153,11 +108,8 @@ export class ColorParticle extends createjs.Container {
     data.luminance = hslArr[2] * 100;
 
     this.particleSystem.startColor = data;
-
-    // this.emitter.startColor = this.color.getRGB();
-    // this.emitter.startColorVar = [25, 25, 25];
-    // this.emitter.speed = speed;
-    // this.emitter.startSize = size;
+    this.particleSystem.initialSpeed = speed / 10;
+    this.particleSystem.startScale = size / 100;
   }
 }
 

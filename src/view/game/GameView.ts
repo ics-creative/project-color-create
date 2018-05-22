@@ -104,7 +104,15 @@ export class GameView extends View {
       173 - 133,
       String(this.TIME_LIMIT)
     );
-    this.textTime.textAlign = "center";
+
+    Util.addText(
+      this,
+      "14px " + Main.FONT_NAME,
+      "#CCCCCC",
+      Main.STAGE_WIDTH >> 1,
+      450,
+      "Drag with 3 Fingers"
+    );
 
     let rect: ColorRect = new ColorRect();
     rect.drawRect(0xffffff, 45);

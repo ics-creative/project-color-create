@@ -39,7 +39,16 @@ export class TitleView extends View {
       "18px " + Main.FONT_NAME,
       "#CCCCCC",
       Main.STAGE_WIDTH >> 1,
-      361 - 133,
+      350 - 133,
+      "Drag with 3 Fingers"
+    );
+
+    Util.addText(
+      this,
+      "16px " + Main.FONT_NAME,
+      "#CCCCCC",
+      Main.STAGE_WIDTH >> 1,
+      450,
       "powered by ICS"
     );
   }

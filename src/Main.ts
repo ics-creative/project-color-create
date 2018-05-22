@@ -1,3 +1,5 @@
+import { GameConfig } from "./configs/GameConfig";
+import { SharedParams } from "./configs/SharedParams";
 import { ColorParticle } from "./view/game/ColorParticle";
 import { GameView } from "./view/game/GameView";
 import { ResultView } from "./view/result/ResultView";
@@ -9,17 +11,9 @@ window.addEventListener("DOMContentLoaded", () => {
 });
 
 export class Main {
-  public stage: createjs.Stage;
-  public canvas: HTMLCanvasElement;
-
-  public manager: ViewManager;
-
-  static readonly FONT_NAME: string = "Bungee";
-  static SCALE: number;
-  static readonly STAGE_WIDTH: number = 320;
-  static readonly STAGE_HEIGHT: number = 480;
-  static readonly WIDTH: number = Main.STAGE_WIDTH;
-  static readonly HEIGHT: number = Main.STAGE_HEIGHT;
+  private readonly stage: createjs.Stage;
+  private readonly canvas: HTMLCanvasElement;
+  private readonly manager: ViewManager;
 
   constructor() {
     this.canvas = <HTMLCanvasElement>document.getElementById("my-canvas");
@@ -77,16 +71,18 @@ export class Main {
     this.canvas.style.width = `${innerWidth}px`;
     this.canvas.style.height = `${innerHeight}px`;
 
-    const sx = this.canvas.width / Main.WIDTH;
-    const sy = this.canvas.height / Main.HEIGHT;
+    const sx = this.canvas.width / GameConfig.STAGE_WIDTH;
+    const sy = this.canvas.height / GameConfig.STAGE_HEIGHT;
 
-    Main.SCALE = Math.min(sx, sy);
+    const scale = Math.min(sx, sy);
 
-    this.stage.scaleX = Main.SCALE;
-    this.stage.scaleY = Main.SCALE;
+    this.stage.scaleX = scale;
+    this.stage.scaleY = scale;
 
-    const offsetX = (this.canvas.width - Main.STAGE_WIDTH * Main.SCALE) / 2;
-    const offsetY = (this.canvas.height - Main.STAGE_HEIGHT * Main.SCALE) / 2;
+    SharedParams.SCALE = scale;
+
+    const offsetX = (this.canvas.width - GameConfig.STAGE_WIDTH * scale) / 2;
+    const offsetY = (this.canvas.height - GameConfig.STAGE_HEIGHT * scale) / 2;
     this.stage.x = offsetX;
     // this.stage.y = offsetY;
   }

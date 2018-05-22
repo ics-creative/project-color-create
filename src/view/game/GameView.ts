@@ -1,13 +1,14 @@
-import { ColorParticle } from "./ColorParticle";
-import { ColorRect } from "./ColorRect";
-import { ColorRGB } from "../../utils/ColorRGB";
-import { Main } from "../../Main";
-import { ResultCover } from "./ResultCover";
+import { GameConfig } from "../../configs/GameConfig";
+import { SharedParams } from "../../configs/SharedParams";
 import { ScoreData } from "../../data/ScoreData";
-import { TargetReticle } from "./TargetReticle";
-import { TouchCircle } from "./TouchCircle";
+import { ColorRGB } from "../../utils/ColorRGB";
 import { Util } from "../../utils/Util";
 import { View } from "../View";
+import { ColorParticle } from "./ColorParticle";
+import { ColorRect } from "./ColorRect";
+import { ResultCover } from "./ResultCover";
+import { TargetReticle } from "./TargetReticle";
+import { TouchCircle } from "./TouchCircle";
 
 /**
  * @author ICS-Kawakatsu
@@ -74,7 +75,7 @@ export class GameView extends View {
 
     Util.addText(
       this,
-      "20px " + Main.FONT_NAME,
+      "20px " + GameConfig.FONT_NAME,
       "#FFFFFF",
       85,
       180 - 133,
@@ -82,7 +83,7 @@ export class GameView extends View {
     );
     Util.addText(
       this,
-      "20px " + Main.FONT_NAME,
+      "20px " + GameConfig.FONT_NAME,
       "#FFFFFF",
       235,
       180 - 133,
@@ -90,26 +91,26 @@ export class GameView extends View {
     );
     this.textRound = Util.addText(
       this,
-      "20px " + Main.FONT_NAME,
+      "20px " + GameConfig.FONT_NAME,
       "#FFFFFF",
-      Main.STAGE_WIDTH / 2,
+      GameConfig.STAGE_WIDTH / 2,
       147 - 133,
       "Round"
     );
     this.textTime = Util.addText(
       this,
-      "32px " + Main.FONT_NAME,
+      "32px " + GameConfig.FONT_NAME,
       "#FFFFFF",
-      Main.STAGE_WIDTH >> 1,
+      GameConfig.STAGE_WIDTH >> 1,
       173 - 133,
       String(this.TIME_LIMIT)
     );
 
     Util.addText(
       this,
-      "14px " + Main.FONT_NAME,
+      "14px " + GameConfig.FONT_NAME,
       "#CCCCCC",
-      Main.STAGE_WIDTH >> 1,
+      GameConfig.STAGE_WIDTH >> 1,
       450,
       "Drag with 3 Fingers"
     );
@@ -132,9 +133,9 @@ export class GameView extends View {
     this.addChild(this.reticle);
     this.reticle.visible = false;
 
-    this.centerPointX = Main.STAGE_WIDTH >> 1;
+    this.centerPointX = GameConfig.STAGE_WIDTH >> 1;
     this.centerPointY =
-      215 + 90 - 133 + ((Main.STAGE_HEIGHT - (215 + 90 - 133)) >> 1);
+      215 + 90 - 133 + ((GameConfig.STAGE_HEIGHT - (215 + 90 - 133)) >> 1);
     this.particleRange = 150;
     this.thetaDelay = Math.PI * 2 / 3;
 
@@ -176,11 +177,11 @@ export class GameView extends View {
 
     this.containerTextStart = new createjs.Container();
     this.addChild(this.containerTextStart);
-    this.containerTextStart.x = Main.STAGE_WIDTH >> 1;
-    this.containerTextStart.y = Main.STAGE_HEIGHT >> 1;
+    this.containerTextStart.x = GameConfig.STAGE_WIDTH >> 1;
+    this.containerTextStart.y = GameConfig.STAGE_HEIGHT >> 1;
     this.textStart = Util.addText(
       this.containerTextStart,
-      "50px " + Main.FONT_NAME,
+      "50px " + GameConfig.FONT_NAME,
       "#FFFFFF",
       0,
       -20,
@@ -212,10 +213,12 @@ export class GameView extends View {
         if (this.currentTouchList[i] != null) {
           //ついてく
           circle.x +=
-            ((this.currentTouchList[i].stageX - 0) / Main.SCALE - circle.x) *
+            ((this.currentTouchList[i].stageX - 0) / SharedParams.SCALE -
+              circle.x) *
             0.4;
           circle.y +=
-            (this.currentTouchList[i].stageY / Main.SCALE - circle.y) * 0.4;
+            (this.currentTouchList[i].stageY / SharedParams.SCALE - circle.y) *
+            0.4;
         } else {
           //くるくる
           const theta2: number = this.theta + i * this.thetaDelay;
@@ -259,8 +262,8 @@ export class GameView extends View {
 
     const circleLength: number = this.currentTouchList.length;
 
-    const nx: number = (event.stageX - 0) / Main.SCALE;
-    const ny: number = event.stageY / Main.SCALE;
+    const nx: number = (event.stageX - 0) / SharedParams.SCALE;
+    const ny: number = event.stageY / SharedParams.SCALE;
     const rangeList: Distance[] = [];
     for (let i = 0; i < circleLength; i++) {
       if (this.currentTouchList[i] == null) {
@@ -301,8 +304,8 @@ export class GameView extends View {
     let yy: number = 0;
     for (let j = 0; j < circleLength; j++) {
       touch = arr[j];
-      xx += (touch.stageX - 0) / Main.SCALE;
-      yy += touch.stageY / Main.SCALE;
+      xx += (touch.stageX - 0) / SharedParams.SCALE;
+      yy += touch.stageY / SharedParams.SCALE;
     }
     xx /= circleLength;
     yy /= circleLength;
@@ -363,8 +366,8 @@ export class GameView extends View {
       touch = this.currentTouchList[j];
 
       const percent: number = circle.getDPercent(
-        (touch.stageX - 0) / Main.SCALE,
-        touch.stageY / Main.SCALE
+        (touch.stageX - 0) / SharedParams.SCALE,
+        touch.stageY / SharedParams.SCALE
       );
       const colValue: number = (0xff * percent) | 0;
       let colUint: number;
@@ -387,8 +390,8 @@ export class GameView extends View {
       circle.setData(
         colUint,
         15 + 15 * percent,
-        (touch.stageX - 0) / Main.SCALE,
-        touch.stageY / Main.SCALE,
+        (touch.stageX - 0) / SharedParams.SCALE,
+        touch.stageY / SharedParams.SCALE,
         String(colValue)
       );
       this.currentParticleList[j].setData(

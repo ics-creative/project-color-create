@@ -6,7 +6,7 @@ import { ColorRGB } from "../../utils/ColorRGB";
 
 export class TargetReticle extends createjs.Container {
   private color: ColorRGB;
-  private shape: createjs.Shape;
+  private readonly shape: createjs.Shape;
 
   constructor() {
     super();

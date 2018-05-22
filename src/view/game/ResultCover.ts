@@ -1,10 +1,9 @@
 import { CcButton } from "../../components/CcButton";
-import { ColorRGB } from "../../utils/ColorRGB";
-
-import { Main } from "../../Main";
+import { GameConfig } from "../../configs/GameConfig";
 import { ScoreData } from "../../data/ScoreData";
-import { TargetReticle } from "./TargetReticle";
+import { ColorRGB } from "../../utils/ColorRGB";
 import { Util } from "../../utils/Util";
+import { TargetReticle } from "./TargetReticle";
 
 /**
  * @author ICS-Kawakatsu
@@ -36,13 +35,13 @@ export class ResultCover extends createjs.Container {
     this._color = new ColorRGB();
 
     this._cover = Util.getRectShape(
-      Main.STAGE_WIDTH * 2,
-      Main.STAGE_HEIGHT * 2,
+      GameConfig.STAGE_WIDTH * 2,
+      GameConfig.STAGE_HEIGHT * 2,
       "#000000",
       0.8
     );
-    this._cover.x = -0.5 * Main.STAGE_WIDTH;
-    this._cover.y = -0.5 * Main.STAGE_HEIGHT;
+    this._cover.x = -0.5 * GameConfig.STAGE_WIDTH;
+    this._cover.y = -0.5 * GameConfig.STAGE_HEIGHT;
     this.addChild(this._cover);
 
     const reticle = new TargetReticle();
@@ -54,52 +53,52 @@ export class ResultCover extends createjs.Container {
 
     this._textResult = Util.addText(
       this,
-      "18px " + Main.FONT_NAME,
+      "18px " + GameConfig.FONT_NAME,
       "#FFFFFF",
-      Main.STAGE_WIDTH / 2,
+      GameConfig.STAGE_WIDTH / 2,
       177 - 133,
       "Your Color #000000"
     );
     this._textTarget = Util.addText(
       this,
-      "18px " + Main.FONT_NAME,
+      "18px " + GameConfig.FONT_NAME,
       "#FFFFFF",
-      Main.STAGE_WIDTH / 2,
+      GameConfig.STAGE_WIDTH / 2,
       208 - 133,
       "Target Color #000000"
     );
     this._textTime = Util.addText(
       this,
-      "20px " + Main.FONT_NAME,
+      "20px " + GameConfig.FONT_NAME,
       "#FFFFFF",
-      Main.STAGE_WIDTH / 2,
+      GameConfig.STAGE_WIDTH / 2,
       325 - 133 + 15,
       "Time\n10.0"
     );
     this._textTime.textAlign = "center";
     this._textR = Util.addText(
       this,
-      "40px " + Main.FONT_NAME,
+      "40px " + GameConfig.FONT_NAME,
       "#FF0000",
-      (Main.STAGE_WIDTH >> 1) - 40,
+      (GameConfig.STAGE_WIDTH >> 1) - 40,
       357 - 133 + 20,
       "100%"
     );
     this._textR.textAlign = "right";
     this._textG = Util.addText(
       this,
-      "40px " + Main.FONT_NAME,
+      "40px " + GameConfig.FONT_NAME,
       "#00FF00",
-      Main.STAGE_WIDTH >> 1,
+      GameConfig.STAGE_WIDTH >> 1,
       259 - 133 + 20,
       "100%",
       "center"
     );
     this._textB = Util.addText(
       this,
-      "40px " + Main.FONT_NAME,
+      "40px " + GameConfig.FONT_NAME,
       "#0000FF",
-      (Main.STAGE_WIDTH >> 1) + 40,
+      (GameConfig.STAGE_WIDTH >> 1) + 40,
       357 - 133 + 20,
       "100%",
       "left"
@@ -108,20 +107,20 @@ export class ResultCover extends createjs.Container {
     this.addChild(this.containerScore);
     this._textScore = Util.addText(
       this.containerScore,
-      "32px " + Main.FONT_NAME,
+      "32px " + GameConfig.FONT_NAME,
       "#FFFFFF",
       80 - 32,
       443 - 133,
       "Score: 0",
       "center"
     );
-    this.containerScore.x = Main.STAGE_WIDTH >> 1;
+    this.containerScore.x = GameConfig.STAGE_WIDTH >> 1;
     this.containerScore.y = this._textScore.y;
     this._textScore.x = 0;
     this._textScore.y = -20;
 
     this._btnNext = new CcButton(187, 35, "Next Round");
-    this._btnNext.x = Main.STAGE_WIDTH / 2;
+    this._btnNext.x = GameConfig.STAGE_WIDTH / 2;
     this._btnNext.y = 534 - 133;
     this._btnNext.addEventListener("click", (): void => {
       this.dispatchEvent("next", this);

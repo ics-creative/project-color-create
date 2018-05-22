@@ -1,5 +1,5 @@
 import { CcButton } from "../../components/CcButton";
-import { Main } from "../../Main";
+import { GameConfig } from "../../configs/GameConfig";
 import { ScoreData } from "../../data/ScoreData";
 
 import { Util } from "../../utils/Util";
@@ -31,9 +31,9 @@ export class ResultView extends View {
 
     const textResult: createjs.Text = Util.addText(
       this,
-      "36px " + Main.FONT_NAME,
+      "36px " + GameConfig.FONT_NAME,
       "#FFFFFF",
-      Main.STAGE_WIDTH >> 1,
+      GameConfig.STAGE_WIDTH >> 1,
       166 - 133,
       "Result"
     );
@@ -49,9 +49,9 @@ export class ResultView extends View {
 
       textList[i] = Util.addText(
         this,
-        "24px " + Main.FONT_NAME,
+        "24px " + GameConfig.FONT_NAME,
         "#FFFFFF",
-        Main.STAGE_WIDTH >> 1,
+        GameConfig.STAGE_WIDTH >> 1,
         234 - 133 + i * 32,
         "Round" + (i + 1) + " : " + score.total
       );
@@ -59,23 +59,23 @@ export class ResultView extends View {
 
     const textYour: createjs.Text = Util.addText(
       this,
-      "36px " + Main.FONT_NAME,
+      "36px " + GameConfig.FONT_NAME,
       "#FFFFFF",
-      Main.STAGE_WIDTH >> 1,
+      GameConfig.STAGE_WIDTH >> 1,
       356 - 133,
       "Your Score"
     );
     this._textTotal = Util.addText(
       this,
-      "56px " + Main.FONT_NAME,
+      "56px " + GameConfig.FONT_NAME,
       "#FFFFFF",
-      Main.STAGE_WIDTH >> 1,
+      GameConfig.STAGE_WIDTH >> 1,
       398 - 133,
       String(roundTotal)
     );
 
     this._btnTweet = new CcButton(187, 35, "Tweet");
-    this._btnTweet.x = Main.STAGE_WIDTH >> 1;
+    this._btnTweet.x = GameConfig.STAGE_WIDTH >> 1;
     this._btnTweet.y = 495 - 133;
     this._btnTweet.on("click", (): void => {
       const url: string =
@@ -88,7 +88,7 @@ export class ResultView extends View {
     this._btnTweet.visible = true;
 
     this._btnRetry = new CcButton(187, 35, "Retry");
-    this._btnRetry.x = Main.STAGE_WIDTH >> 1;
+    this._btnRetry.x = GameConfig.STAGE_WIDTH >> 1;
     this._btnRetry.y = 545 - 133;
     this.addChild(this._btnRetry);
 

@@ -1,4 +1,4 @@
-import { Main } from "../Main";
+import { GameConfig } from "../configs/GameConfig";
 import { Util } from "../utils/Util";
 
 /**
@@ -38,7 +38,7 @@ export class CcButton extends createjs.Container {
 
     Util.addText(
       this,
-      "24px " + Main.FONT_NAME,
+      "24px " + GameConfig.FONT_NAME,
       "#000000",
       Math.round(width / 2),
       Math.round(height / 2),

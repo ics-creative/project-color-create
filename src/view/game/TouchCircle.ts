@@ -12,15 +12,15 @@ export class TouchCircle extends createjs.Container {
 
   private initX: number;
   private initY: number;
-  private dMin: number;
-  private dMax: number;
+  private readonly dMin: number;
+  private readonly dMax: number;
   private dPercent: number;
-  private innerSize: number;
+  private readonly innerSize: number;
 
-  private shape: createjs.Shape;
-  private shape2: createjs.Shape;
-  private text: createjs.Text;
-  private line: createjs.Shape;
+  private readonly shape: createjs.Shape;
+  private readonly shape2: createjs.Shape;
+  private readonly text: createjs.Text;
+  private readonly line: createjs.Shape;
 
   constructor(
     $colorName: string,

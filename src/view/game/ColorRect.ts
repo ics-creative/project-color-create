@@ -6,7 +6,7 @@ import { ColorRGB } from "../../utils/ColorRGB";
  */
 export class ColorRect extends createjs.Container {
   public color: ColorRGB;
-  private shape: createjs.Shape;
+  private readonly shape: createjs.Shape;
 
   constructor() {
     super();

@@ -27,7 +27,7 @@ export class TitleView extends View {
 
     Util.addText(
       this,
-      "32px " + Main.FONT_NAME,
+      "38px " + Main.FONT_NAME,
       "#FFFFFF",
       Main.STAGE_WIDTH >> 1,
       294 - 133,
@@ -37,10 +37,10 @@ export class TitleView extends View {
     Util.addText(
       this,
       "18px " + Main.FONT_NAME,
-      "#FFFFFF",
+      "#CCCCCC",
       Main.STAGE_WIDTH >> 1,
       361 - 133,
-      "powered by ICS INC."
+      "powered by ICS"
     );
   }
 

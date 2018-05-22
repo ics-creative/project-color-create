@@ -36,12 +36,11 @@ export class ResultCover extends createjs.Container {
     this._color = new ColorRGB();
 
     this._cover = Util.getRectShape(
-      Main.WIDTH * Main.SCALE,
-      Main.HEIGHT,
+      Main.STAGE_WIDTH,
+      Main.STAGE_HEIGHT,
       "#000000",
       0.8
     );
-    this._cover.x = -Main.STAGE_OFFSET_X;
     this.addChild(this._cover);
 
     const reticle = new TargetReticle();

@@ -204,9 +204,7 @@ export class GameView extends View {
         if (this.currentTouchList[i] != null) {
           //ついてく
           circle.x +=
-            ((this.currentTouchList[i].stageX - Main.STAGE_OFFSET_X) /
-              Main.SCALE -
-              circle.x) *
+            ((this.currentTouchList[i].stageX - 0) / Main.SCALE - circle.x) *
             0.4;
           circle.y +=
             (this.currentTouchList[i].stageY / Main.SCALE - circle.y) * 0.4;
@@ -253,7 +251,7 @@ export class GameView extends View {
 
     const circleLength: number = this.currentTouchList.length;
 
-    const nx: number = (event.stageX - Main.STAGE_OFFSET_X) / Main.SCALE;
+    const nx: number = (event.stageX - 0) / Main.SCALE;
     const ny: number = event.stageY / Main.SCALE;
     const rangeList: Distance[] = [];
     for (let i = 0; i < circleLength; i++) {
@@ -295,7 +293,7 @@ export class GameView extends View {
     let yy: number = 0;
     for (let j = 0; j < circleLength; j++) {
       touch = arr[j];
-      xx += (touch.stageX - Main.STAGE_OFFSET_X) / Main.SCALE;
+      xx += (touch.stageX - 0) / Main.SCALE;
       yy += touch.stageY / Main.SCALE;
     }
     xx /= circleLength;
@@ -357,7 +355,7 @@ export class GameView extends View {
       touch = this.currentTouchList[j];
 
       const percent: number = circle.getDPercent(
-        (touch.stageX - Main.STAGE_OFFSET_X) / Main.SCALE,
+        (touch.stageX - 0) / Main.SCALE,
         touch.stageY / Main.SCALE
       );
       const colValue: number = (0xff * percent) | 0;
@@ -381,7 +379,7 @@ export class GameView extends View {
       circle.setData(
         colUint,
         15 + 15 * percent,
-        (touch.stageX - Main.STAGE_OFFSET_X) / Main.SCALE,
+        (touch.stageX - 0) / Main.SCALE,
         touch.stageY / Main.SCALE,
         String(colValue)
       );

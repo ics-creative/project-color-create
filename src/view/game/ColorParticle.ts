@@ -6,9 +6,7 @@ import { ColorRGB } from "../../utils/ColorRGB";
  * @since  13/04/25
  */
 export class ColorParticle extends createjs.Container {
-  static particleImage: HTMLImageElement;
-
-  public color: ColorRGB;
+  private color: ColorRGB;
   private particleSystem: ParticleSystem;
 
   constructor() {

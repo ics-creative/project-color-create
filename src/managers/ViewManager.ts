@@ -5,7 +5,7 @@ import { View } from "../view/View";
  * @since  13/05/07
  */
 export class ViewManager {
-  private viewList: View[];
+  private readonly viewList: View[];
   private currentView: View;
   public datas: any[];
 
@@ -34,7 +34,7 @@ export class ViewManager {
     }
 
     // const tween: createjs.Tween = createjs.Tween.get(this, { paused: false });
-    const tween: createjs.Tween = createjs.Tween.get(this, { paused: true });
+    const tween: createjs.Tween = createjs.Tween.get(this);
     if (this.currentView != null) {
       //
       tween
@@ -47,7 +47,5 @@ export class ViewManager {
       .call(this.currentView.init, null, this.currentView)
       .call(this.currentView.show, null, this.currentView)
       .wait(this.currentView.showTime);
-
-    tween.setPaused(false);
   }
 }

@@ -5,11 +5,7 @@ import { TitleView } from "./view/title/TitleView";
 import { ViewManager } from "./managers/ViewManager";
 
 window.addEventListener("DOMContentLoaded", () => {
-  ColorParticle.particleImage = new Image();
-  ColorParticle.particleImage.onload = () => {
-    new Main();
-  };
-  ColorParticle.particleImage.src = "images/particle_base.png";
+  new Main();
 });
 
 export class Main {
@@ -18,31 +14,22 @@ export class Main {
 
   public manager: ViewManager;
 
-  static FONT_NAME: string = "Bungee";
+  static readonly FONT_NAME: string = "Bungee";
   static SCALE: number;
-  static STAGE_WIDTH: number = 320;
-  static STAGE_HEIGHT: number = 480;
-  static WIDTH: number = Main.STAGE_WIDTH;
-  static HEIGHT: number = Main.STAGE_HEIGHT;
-  static STAGE_OFFSET_X: number = 0;
+  static readonly STAGE_WIDTH: number = 320;
+  static readonly STAGE_HEIGHT: number = 480;
+  static readonly WIDTH: number = Main.STAGE_WIDTH;
+  static readonly HEIGHT: number = Main.STAGE_HEIGHT;
 
   constructor() {
-    this.canvas = <HTMLCanvasElement>document.getElementById("canv");
-
-    this.canvas.height = innerHeight;
-    this.canvas.width = innerWidth;
+    this.canvas = <HTMLCanvasElement>document.getElementById("my-canvas");
 
     this.stage = new createjs.Stage(this.canvas);
 
-    Main.SCALE = this.canvas.height / Main.HEIGHT;
-    Main.WIDTH = this.canvas.width / Main.SCALE;
-
-    this.stage.scaleX = Main.SCALE;
-    this.stage.scaleY = Main.SCALE;
-
-    Main.STAGE_OFFSET_X =
-      (this.canvas.width - Main.STAGE_WIDTH * Main.SCALE) >> 1;
-    this.stage.x = Main.STAGE_OFFSET_X;
+    window.addEventListener("resize", () => {
+      this.resize();
+    });
+    this.resize();
 
     createjs.Ticker.framerate = 60;
     createjs.Ticker.timingMode = createjs.Ticker.RAF;
@@ -78,10 +65,29 @@ export class Main {
     });
 
     this.manager.gotoView("title");
-    // this.manager.gotoView("result",[gameView.scoreList]);
   }
 
   private tick() {
     this.stage.update();
+  }
+
+  private resize() {
+    this.canvas.width = innerWidth * devicePixelRatio;
+    this.canvas.height = innerHeight * devicePixelRatio;
+    this.canvas.style.width = `${innerWidth}px`;
+    this.canvas.style.height = `${innerHeight}px`;
+
+    const sx = this.canvas.width / Main.WIDTH;
+    const sy = this.canvas.height / Main.HEIGHT;
+
+    Main.SCALE = Math.min(sx, sy);
+
+    this.stage.scaleX = Main.SCALE;
+    this.stage.scaleY = Main.SCALE;
+
+    const offsetX = (this.canvas.width - Main.STAGE_WIDTH * Main.SCALE) / 2;
+    const offsetY = (this.canvas.height - Main.STAGE_HEIGHT * Main.SCALE) / 2;
+    this.stage.x = offsetX;
+    // this.stage.y = offsetY;
   }
 }

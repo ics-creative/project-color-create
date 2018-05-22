@@ -26,6 +26,7 @@
     "webpack-dev-server": "^3.1.4"
   },
   "dependencies": {
-    "@types/createjs": "^0.0.29"
+    "@types/createjs": "^0.0.29",
+    "particlejs": "ics-creative/ParticleJS"
   }
 }

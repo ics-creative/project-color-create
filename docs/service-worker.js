@@ -1,9 +1,8 @@
 const CACHE_NAME = 'project-color-create-v2';
-const urlsToCache = [
-];
+const urlsToCache = [];
 
 // service-worker.js
-self.addEventListener('install', function (event) {
+self.addEventListener('install', (event) => {
   // インストール処理
   event.waitUntil(
     caches.open(CACHE_NAME)
@@ -11,13 +10,13 @@ self.addEventListener('install', function (event) {
   );
 });
 
-self.addEventListener('activate', function (e) {
+self.addEventListener('activate', (event) => {
   console.log('[ServiceWorker] Activate');
 });
 
 // 現状では、この処理を書かないとService Workerが有効と判定されないようです
 // DevToolで［Add to homescreen］を試すと「Site cannot be installed: the page does not work offline」と表示されます
-self.addEventListener('fetch', function (event) {
+self.addEventListener('fetch', (event) => {
   console.log('[ServiceWorker] Fetch');
 
   event.respondWith(
@@ -28,7 +27,6 @@ self.addEventListener('fetch', function (event) {
         if (response) {
           return response;
         }
-
 
         // 重要：リクエストを clone する。リクエストは Stream なので
         // 一度しか処理できない。ここではキャッシュ用、fetch 用と2回

@@ -2,29 +2,44 @@
 <html lang="ja" dir="ltr">
 <head>
   <meta charset="utf-8"/>
-  <title>Color Create</title>
+  <title>Color Create - 色彩感覚訓練ゲーム</title>
   <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
   <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no, viewport-fit=cover"/>
   <meta name="google" content="notranslate"/>
   <meta name="referrer" content="unsafe-url"/>
 
+  <meta property="og:locale" content="ja_JP"/>
+  <meta property="og:type" content="website"/>
+  <meta property="og:title" content="Color Create - 色彩感覚訓練ゲーム"/>
+  <meta property="og:description" content="色彩感覚を訓練できるモバイルゲームです。赤・緑・青の三原色を混ぜて、色を作ろう！"/>
+  <meta property="og:url" content="https://ics-creative.github.io/project-color-create/"/>
+  <meta property="og:site_name" content="ICS MEDIA"/>
+  <meta property="og:image" content="https://ics-creative.github.io/project-color-create/images/preview.png"/>
+  <meta name="twitter:card" content="player"/>
+  <meta name="twitter:player" content="https://ics-creative.github.io/project-color-create/"/>
+  <meta name="twitter:player:width" content="960"/>
+  <meta name="twitter:player:height" content="540"/>
+  <meta name="twitter:description" content="色彩感覚を訓練できるモバイルゲームです。赤・緑・青の三原色を混ぜて、色を作ろう！"/>
+  <meta name="twitter:title" content="Color Create - 色彩感覚訓練ゲーム"/>
+  <meta name="twitter:site" content="@icsweb"/>
+  <meta name="twitter:image" content="https://ics-creative.github.io/project-color-create/images/preview.png"/>
+
   <link rel="manifest" href="manifest.json"/>
   <link rel="apple-touch-icon" href="images/icon.png"/>
   <link rel="stylesheet" href="style.css">
-  <link href="https://fonts.googleapis.com/css?family=Bungee" rel="stylesheet">
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Bungee"/>
 
-  <script defer src="//code.createjs.com/1.0.0/createjs.min.js"></script>
+  <script defer src="libs/createjs.min.js"></script>
   <script defer src="main.js"></script>
-  <script defer src="lib/particleEmitterJs-0.5.0.js"></script>
 </head>
 <body>
   <div id="wrapper">
-    <canvas id="canv"></canvas>
+    <canvas id="my-canvas"></canvas>
   </div>
   <div id="stats"></div>
 
   <script>
-    // navigator.serviceWorker.register('./service-worker.js');
+    navigator.serviceWorker.register('./service-worker.js');
   </script>
 
 </body>

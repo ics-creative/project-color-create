@@ -24,9 +24,9 @@ export class ColorParticle extends createjs.Container {
       // パラメーターJSONのコピー＆ペースト ここから--
       {
         bgColor: "#00000",
-        width: 1473,
-        height: 824,
-        emitFrequency: 40,
+        width: 0,
+        height: 0,
+        emitFrequency: 60,
         startX: 0,
         startXVariance: 0,
         startY: 0,
@@ -38,21 +38,21 @@ export class ColorParticle extends createjs.Container {
         friction: 0.0315,
         accelerationSpeed: 0,
         accelerationDirection: 0,
-        startScale: 1,
+        startScale: 0.5,
         startScaleVariance: 0.52,
         finishScale: 0,
-        finishScaleVariance: "0",
+        finishScaleVariance: 0,
         lifeSpan: 30,
-        lifeSpanVariance: "0",
-        startAlpha: "1",
-        startAlphaVariance: "0",
-        finishAlpha: "1",
-        finishAlphaVariance: "0",
-        shapeIdList: ["blur_circle"],
+        lifeSpanVariance: 0,
+        startAlpha: 1,
+        startAlphaVariance: 0,
+        finishAlpha: 1,
+        finishAlphaVariance: 0,
+        shapeIdList: ["circle"],
         startColor: {
-          hue: "17",
+          hue: 17,
           hueVariance: 32,
-          saturation: "100",
+          saturation: 100,
           saturationVariance: "45",
           luminance: "56",
           luminanceVariance: "19"
@@ -92,7 +92,7 @@ export class ColorParticle extends createjs.Container {
     this.particleSystem.startX = xx;
     this.particleSystem.startY = yy;
 
-    this.particleSystem.initialSpeed = speed / 10;
+    this.particleSystem.initialSpeed = speed / 20;
   }
 
   setOnlyColor(col: number, speed: number, size: number) {

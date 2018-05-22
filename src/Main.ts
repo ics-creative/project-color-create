@@ -7,13 +7,23 @@ import { TitleView } from "./view/title/TitleView";
 import { ViewManager } from "./managers/ViewManager";
 
 window.addEventListener("DOMContentLoaded", () => {
-  new Main();
+  const config = {
+    src: " https://fonts.googleapis.com/css?family=Bungee",
+    type: "fontcss"
+  };
+
+  const loader = new createjs["FontLoader"](config, true);
+  loader.on("complete", () => {
+    new Main();
+  });
+  loader.load();
 });
 
 export class Main {
   private readonly stage: createjs.Stage;
   private readonly canvas: HTMLCanvasElement;
   private readonly manager: ViewManager;
+  private readonly _textFps: createjs.Text;
 
   constructor() {
     this.canvas = <HTMLCanvasElement>document.getElementById("my-canvas");
@@ -59,9 +69,14 @@ export class Main {
     });
 
     this.manager.gotoView("title");
+
+    this._textFps = new createjs.Text("", "", "white");
+    this.stage.addChild(this._textFps);
   }
 
   private tick() {
+    // this._textFps.text = createjs.Ticker.getMeasuredFPS() + "FPS";
+
     this.stage.update();
   }
 

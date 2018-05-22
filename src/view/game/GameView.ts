@@ -1,7 +1,3 @@
-/**
- * @author ICS-Kawakatsu
- * @since  13/05/07
- */
 import { ColorParticle } from "./ColorParticle";
 import { ColorRect } from "./ColorRect";
 import { ColorRGB } from "../../utils/ColorRGB";
@@ -13,10 +9,14 @@ import { TouchCircle } from "./TouchCircle";
 import { Util } from "../../utils/Util";
 import { View } from "../View";
 
+/**
+ * @author ICS-Kawakatsu
+ * @since  13/05/07
+ */
 export class GameView extends View {
-  public TIME_LIMIT: number = 10.0;
-  public ROUND_MAX: number = 3;
-  public thetaDelay: number;
+  private TIME_LIMIT: number = 10.0;
+  private ROUND_MAX: number = 3;
+  private thetaDelay: number;
 
   //system
   /*
@@ -25,37 +25,35 @@ export class GameView extends View {
 	 * 2...操作中
 	 * 3...結果表示中
 	 */
-  public state: number;
-  public round: number;
+  private state: number;
+  private round: number;
   public scoreList: ScoreData[];
 
   //text
-  public textTime: createjs.Text;
-  public textRound: createjs.Text;
-  public textStart: createjs.Text;
-  public containerTextStart: createjs.Container;
+  private textTime: createjs.Text;
+  private textRound: createjs.Text;
+  private textStart: createjs.Text;
+  private containerTextStart: createjs.Container;
 
   //game
-  public currentTouchList: createjs.MouseEvent[];
-  public usedCircles: TouchCircle[];
-  public targetRect: ColorRect;
-  public currentRect: ColorRect;
-  public gp: TouchCircle;
-  public reticle: TargetReticle;
-
-  public cover: ResultCover;
-
-  public startTime: number;
-  public timeLeft: number;
-  public theta: number;
+  private currentTouchList: createjs.MouseEvent[];
+  private usedCircles: TouchCircle[];
+  private targetRect: ColorRect;
+  private currentRect: ColorRect;
+  private gp: TouchCircle;
+  private reticle: TargetReticle;
+  private cover: ResultCover;
+  private startTime: number;
+  private timeLeft: number;
+  private theta: number;
   //
 
   //particle
-  public centerPointX: number;
-  public centerPointY: number;
-  public particleRange: number;
-  public gpParticle: ColorParticle;
-  public currentParticleList: ColorParticle[];
+  private centerPointX: number;
+  private centerPointY: number;
+  private particleRange: number;
+  private gpParticle: ColorParticle;
+  private currentParticleList: ColorParticle[];
 
   constructor($sceneId: string) {
     super($sceneId);

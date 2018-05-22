@@ -5,8 +5,8 @@ import { View } from "../view/View";
  * @since  13/05/07
  */
 export class ViewManager {
-  public viewList: View[];
-  public currentView: View;
+  private viewList: View[];
+  private currentView: View;
   public datas: any[];
 
   constructor() {

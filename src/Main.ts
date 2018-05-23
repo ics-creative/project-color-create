@@ -5,6 +5,8 @@ import { GameView } from "./view/game/GameView";
 import { ResultView } from "./view/result/ResultView";
 import { TitleView } from "./view/title/TitleView";
 
+import "./styles/style.css";
+
 window.addEventListener("DOMContentLoaded", () => {
   const config = {
     src: " https://fonts.googleapis.com/css?family=Bungee",

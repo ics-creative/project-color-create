@@ -26,7 +26,6 @@
 
   <link rel="manifest" href="manifest.json"/>
   <link rel="apple-touch-icon" href="images/icon.png"/>
-  <link rel="stylesheet" href="style.css">
 
   <script defer src="libs/createjs.min.js"></script>
   <script defer src="main.js"></script>
@@ -50,8 +49,11 @@
       gtag('js', new Date());
       gtag('config', 'UA-34243464-4');
 
-      navigator.serviceWorker.register('./service-worker.js');
+      if("serviceWorker" in navigator){
+        navigator.serviceWorker.register('./service-worker.js');
+      }
     }
+
   </script>
 </body>
 </html>

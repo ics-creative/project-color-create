@@ -35,17 +35,21 @@ module.exports = {
     ],
   },
 
-  // Other webpack config...
   plugins: [
-    // Other plugins...
+    // サービスワーカーを定義
     new GenerateSW({
       importsDirectory: 'service-worker-assets',
       runtimeCaching: [
         {
-          urlPattern: globToRegExp('libs/*.js'),
-          handler: 'cacheFirst'
-        }, {
-          urlPattern: globToRegExp('images/*.{png,jpg}'),
+          urlPattern: /\/$/,
+          handler: 'networkFirst'
+        },
+        {
+          urlPattern: /index.html$/,
+          handler: 'networkFirst'
+        },
+        {
+          urlPattern: /libs\/.*\.js/,
           handler: 'cacheFirst'
         }
       ],
@@ -58,7 +62,7 @@ module.exports = {
   // 実行時にブラウザが自動的に localhost を開く
   devServer: {
     contentBase: 'docs',
-    open: true,
+//    open: true,
 //    host: "0.0.0.0"
   }
 };

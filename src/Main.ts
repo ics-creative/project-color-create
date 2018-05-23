@@ -17,6 +17,9 @@ window.addEventListener("DOMContentLoaded", () => {
   loader.on("complete", () => {
     new Main();
   });
+  loader.on("error", () => {
+    new Main();
+  });
   loader.load();
 });
 

@@ -1,3 +1,6 @@
+const {GenerateSW} = require('workbox-webpack-plugin');
+const globToRegExp = require('glob-to-regexp');
+
 module.exports = {
   // メインとなるJavaScriptファイル（エントリーポイント）
   entry: './src/Main.ts',
@@ -32,6 +35,23 @@ module.exports = {
     ],
   },
 
+  // Other webpack config...
+  plugins: [
+    // Other plugins...
+    new GenerateSW({
+      importsDirectory: 'service-worker-assets',
+      runtimeCaching: [
+        {
+          urlPattern: globToRegExp('libs/*.js'),
+          handler: 'cacheFirst'
+        }, {
+          urlPattern: globToRegExp('images/*.{png,jpg}'),
+          handler: 'cacheFirst'
+        }
+      ],
+    })
+  ],
+
   devtool: 'source-map',
 
   // ローカル開発用環境を立ち上げる
@@ -39,6 +59,6 @@ module.exports = {
   devServer: {
     contentBase: 'docs',
     open: true,
-    host: "0.0.0.0"
+//    host: "0.0.0.0"
   }
 };

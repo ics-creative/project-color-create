@@ -1,60 +1,30 @@
-const CACHE_NAME = 'project-color-create-v2';
-const urlsToCache = [];
+/**
+ * Welcome to your Workbox-powered service worker!
+ *
+ * You'll need to register this file in your web app and you should
+ * disable HTTP caching for this file too.
+ * See https://goo.gl/nhQhGp
+ *
+ * The rest of the code is auto-generated. Please don't update this file
+ * directly; instead, make changes to your Workbox build configuration
+ * and re-run your build process.
+ * See https://goo.gl/2aRDsh
+ */
 
-// service-worker.js
-self.addEventListener('install', (event) => {
-  // インストール処理
-  event.waitUntil(
-    caches.open(CACHE_NAME)
-      .then((cache) => cache.addAll(urlsToCache))
-  );
-});
+importScripts("https://storage.googleapis.com/workbox-cdn/releases/3.2.0/workbox-sw.js");
 
-self.addEventListener('activate', (event) => {
-  console.log('[ServiceWorker] Activate');
-});
+importScripts(
+  "service-worker-assets/precache-manifest.247381f8437a6efe133cc9a575e75175.js"
+);
 
-// 現状では、この処理を書かないとService Workerが有効と判定されないようです
-// DevToolで［Add to homescreen］を試すと「Site cannot be installed: the page does not work offline」と表示されます
-self.addEventListener('fetch', (event) => {
-  console.log('[ServiceWorker] Fetch');
+/**
+ * The workboxSW.precacheAndRoute() method efficiently caches and responds to
+ * requests for URLs in the manifest.
+ * See https://goo.gl/S9QRab
+ */
+self.__precacheManifest = [].concat(self.__precacheManifest || []);
+workbox.precaching.suppressWarnings();
+workbox.precaching.precacheAndRoute(self.__precacheManifest, {});
 
-  event.respondWith(
-    caches.match(event.request)
-      .then((response) => {
-
-        // キャッシュがあったのでレスポンスを返す
-        if (response) {
-          return response;
-        }
-
-        // 重要：リクエストを clone する。リクエストは Stream なので
-        // 一度しか処理できない。ここではキャッシュ用、fetch 用と2回
-        // 必要なので、リクエストは clone しないといけない
-        const fetchRequest = event.request.clone();
-
-        return fetch(fetchRequest).then(
-          (response) => {
-
-            // レスポンスが正しいかをチェック
-            if (!response || response.status !== 200 || response.type !== 'basic') {
-              return response;
-            }
-
-            // 重要：レスポンスを clone する。レスポンスは Stream で
-            // ブラウザ用とキャッシュ用の2回必要。なので clone して
-            // 2つの Stream があるようにする
-            const responseToCache = response.clone();
-
-            caches.open(CACHE_NAME)
-              .then((cache) => {
-                cache.put(event.request, responseToCache);
-              });
-
-            return response;
-          }
-        );
-      })
-  );
-
-});
+workbox.routing.registerRoute(/^libs\/.*\.js$/, workbox.strategies.cacheFirst(), 'GET');
+workbox.routing.registerRoute(/^images\/.*\.\{png\,jpg\}$/, workbox.strategies.cacheFirst(), 'GET');

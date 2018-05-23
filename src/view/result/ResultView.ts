@@ -2,7 +2,7 @@ import { CcButton } from "../../components/CcButton";
 import { GameConfig } from "../../configs/GameConfig";
 import { ScoreData } from "../../data/ScoreData";
 
-import { Util } from "../../utils/Util";
+import { UiUtil } from "../../utils/UiUtil";
 import { View } from "../View";
 
 /**
@@ -29,7 +29,7 @@ export class ResultView extends View {
     // 		scoreList[1] = this.tests(1001, 0xFF, 0xFFFF);
     // 		scoreList[2] = this.tests(1002, 0xFF, 0xFFFF);
 
-    const textResult: createjs.Text = Util.addText(
+    const textResult: createjs.Text = UiUtil.addText(
       this,
       "36px " + GameConfig.FONT_NAME,
       "#FFFFFF",
@@ -47,7 +47,7 @@ export class ResultView extends View {
       str += "Round" + (i + 1) + ": " + score.total + "\n";
       roundTotal += score.total;
 
-      textList[i] = Util.addText(
+      textList[i] = UiUtil.addText(
         this,
         "24px " + GameConfig.FONT_NAME,
         "#FFFFFF",
@@ -57,7 +57,7 @@ export class ResultView extends View {
       );
     }
 
-    const textYour: createjs.Text = Util.addText(
+    const textYour: createjs.Text = UiUtil.addText(
       this,
       "36px " + GameConfig.FONT_NAME,
       "#FFFFFF",
@@ -65,7 +65,7 @@ export class ResultView extends View {
       356 - 133,
       "Your Score"
     );
-    this._textTotal = Util.addText(
+    this._textTotal = UiUtil.addText(
       this,
       "56px " + GameConfig.FONT_NAME,
       "#FFFFFF",
@@ -146,7 +146,7 @@ export class ResultView extends View {
     this._textTotal.text = String(Math.floor(this._totalScore));
   }
 
-  //override
+  /** @override */
   dispose() {
     this._btnRetry.removeAllEventListeners("click");
     this._btnRetry.dispose();

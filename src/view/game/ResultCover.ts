@@ -2,7 +2,7 @@ import { CcButton } from "../../components/CcButton";
 import { GameConfig } from "../../configs/GameConfig";
 import { ScoreData } from "../../data/ScoreData";
 import { ColorRGB } from "../../utils/ColorRGB";
-import { Util } from "../../utils/Util";
+import { UiUtil } from "../../utils/UiUtil";
 import { TargetReticle } from "./TargetReticle";
 
 /**
@@ -34,7 +34,7 @@ export class ResultCover extends createjs.Container {
 
     this._color = new ColorRGB();
 
-    this._cover = Util.getRectShape(
+    this._cover = UiUtil.getRectShape(
       GameConfig.STAGE_WIDTH * 2,
       GameConfig.STAGE_HEIGHT * 2,
       "#000000",
@@ -51,7 +51,7 @@ export class ResultCover extends createjs.Container {
     reticle.drawReticle(0x666666, 37, 37, 65, 65);
     this.reticle = reticle;
 
-    this._textResult = Util.addText(
+    this._textResult = UiUtil.addText(
       this,
       "18px " + GameConfig.FONT_NAME,
       "#FFFFFF",
@@ -59,7 +59,7 @@ export class ResultCover extends createjs.Container {
       177 - 133,
       "Your Color #000000"
     );
-    this._textTarget = Util.addText(
+    this._textTarget = UiUtil.addText(
       this,
       "18px " + GameConfig.FONT_NAME,
       "#FFFFFF",
@@ -67,7 +67,7 @@ export class ResultCover extends createjs.Container {
       208 - 133,
       "Target Color #000000"
     );
-    this._textTime = Util.addText(
+    this._textTime = UiUtil.addText(
       this,
       "20px " + GameConfig.FONT_NAME,
       "#FFFFFF",
@@ -76,7 +76,7 @@ export class ResultCover extends createjs.Container {
       "Time\n10.0"
     );
     this._textTime.textAlign = "center";
-    this._textR = Util.addText(
+    this._textR = UiUtil.addText(
       this,
       "40px " + GameConfig.FONT_NAME,
       "#FF0000",
@@ -85,7 +85,7 @@ export class ResultCover extends createjs.Container {
       "100%"
     );
     this._textR.textAlign = "right";
-    this._textG = Util.addText(
+    this._textG = UiUtil.addText(
       this,
       "40px " + GameConfig.FONT_NAME,
       "#00FF00",
@@ -94,7 +94,7 @@ export class ResultCover extends createjs.Container {
       "100%",
       "center"
     );
-    this._textB = Util.addText(
+    this._textB = UiUtil.addText(
       this,
       "40px " + GameConfig.FONT_NAME,
       "#0000FF",
@@ -105,7 +105,7 @@ export class ResultCover extends createjs.Container {
     );
     this.containerScore = new createjs.Container();
     this.addChild(this.containerScore);
-    this._textScore = Util.addText(
+    this._textScore = UiUtil.addText(
       this.containerScore,
       "32px " + GameConfig.FONT_NAME,
       "#FFFFFF",

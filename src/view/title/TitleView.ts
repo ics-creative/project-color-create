@@ -1,6 +1,6 @@
 import { CcButton } from "../../components/CcButton";
 import { GameConfig } from "../../configs/GameConfig";
-import { Util } from "../../utils/Util";
+import { UiUtil } from "../../utils/UiUtil";
 
 import { View } from "../View";
 
@@ -25,7 +25,7 @@ export class TitleView extends View {
       this.dispatchEvent("start", this);
     });
 
-    Util.addText(
+    UiUtil.addText(
       this,
       "38px " + GameConfig.FONT_NAME,
       "#FFFFFF",
@@ -34,7 +34,7 @@ export class TitleView extends View {
       "Color Create"
     );
 
-    Util.addText(
+    UiUtil.addText(
       this,
       "18px " + GameConfig.FONT_NAME,
       "#CCCCCC",
@@ -43,7 +43,7 @@ export class TitleView extends View {
       "Drag with 3 Fingers"
     );
 
-    Util.addText(
+    UiUtil.addText(
       this,
       "16px " + GameConfig.FONT_NAME,
       "#CCCCCC",
@@ -53,7 +53,7 @@ export class TitleView extends View {
     );
   }
 
-  //override
+  /** @override */
   dispose() {
     this._btnStart.removeAllEventListeners("click");
     this._btnStart.dispose();

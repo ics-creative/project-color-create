@@ -2,7 +2,7 @@
  * @author ICS-Kawakatsu
  * @since  13/04/25
  */
-export class Util extends createjs.Container {
+export class UiUtil extends createjs.Container {
   static addText(
     parent: createjs.Container,
     font: string,

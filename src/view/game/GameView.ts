@@ -2,7 +2,7 @@ import { GameConfig } from "../../configs/GameConfig";
 import { SharedParams } from "../../configs/SharedParams";
 import { ScoreData } from "../../data/ScoreData";
 import { ColorRGB } from "../../utils/ColorRGB";
-import { Util } from "../../utils/Util";
+import { UiUtil } from "../../utils/UiUtil";
 import { View } from "../View";
 import { ColorParticle } from "./ColorParticle";
 import { ColorRect } from "./ColorRect";
@@ -73,7 +73,7 @@ export class GameView extends View {
       this.canvas_touchEndHandler(event);
     });
 
-    Util.addText(
+    UiUtil.addText(
       this,
       "20px " + GameConfig.FONT_NAME,
       "#FFFFFF",
@@ -81,7 +81,7 @@ export class GameView extends View {
       180 - 133,
       "You"
     );
-    Util.addText(
+    UiUtil.addText(
       this,
       "20px " + GameConfig.FONT_NAME,
       "#FFFFFF",
@@ -89,7 +89,7 @@ export class GameView extends View {
       180 - 133,
       "Target"
     );
-    this.textRound = Util.addText(
+    this.textRound = UiUtil.addText(
       this,
       "20px " + GameConfig.FONT_NAME,
       "#FFFFFF",
@@ -97,7 +97,7 @@ export class GameView extends View {
       147 - 133,
       "Round"
     );
-    this.textTime = Util.addText(
+    this.textTime = UiUtil.addText(
       this,
       "32px " + GameConfig.FONT_NAME,
       "#FFFFFF",
@@ -106,7 +106,7 @@ export class GameView extends View {
       String(this.TIME_LIMIT)
     );
 
-    Util.addText(
+    UiUtil.addText(
       this,
       "14px " + GameConfig.FONT_NAME,
       "#CCCCCC",
@@ -179,7 +179,7 @@ export class GameView extends View {
     this.addChild(this.containerTextStart);
     this.containerTextStart.x = GameConfig.STAGE_WIDTH >> 1;
     this.containerTextStart.y = GameConfig.STAGE_HEIGHT >> 1;
-    this.textStart = Util.addText(
+    this.textStart = UiUtil.addText(
       this.containerTextStart,
       "50px " + GameConfig.FONT_NAME,
       "#FFFFFF",
@@ -592,7 +592,7 @@ export class GameView extends View {
     }
   }
 
-  //override
+  /** @override */
   dispose() {
     this.stage.removeAllEventListeners("stagemousedown");
     this.stage.removeAllEventListeners("stagemousemove");

@@ -1,5 +1,5 @@
 import { GameConfig } from "../configs/GameConfig";
-import { Util } from "../utils/Util";
+import { UiUtil } from "../utils/UiUtil";
 
 /**
  * @author ICS-Ikeda
@@ -16,7 +16,7 @@ export class CcButton extends createjs.Container {
     this.regX = width / 2;
     this.regY = height / 2;
 
-    const btnShape = Util.getRoundRectShape(width, height, 5, "#FFFFFF", 1);
+    const btnShape = UiUtil.getRoundRectShape(width, height, 5, "#FFFFFF", 1);
     this.addChild(btnShape);
 
     btnShape.on("mousedown", (event: createjs.MouseEvent): void => {
@@ -36,7 +36,7 @@ export class CcButton extends createjs.Container {
     });
     this._btnShape = btnShape;
 
-    Util.addText(
+    UiUtil.addText(
       this,
       "24px " + GameConfig.FONT_NAME,
       "#000000",
@@ -48,6 +48,7 @@ export class CcButton extends createjs.Container {
     );
   }
 
+  /** @override */
   public dispose(): void {
     this._btnShape.removeAllEventListeners("mousedown");
     this._btnShape.removeAllEventListeners("mouseup");

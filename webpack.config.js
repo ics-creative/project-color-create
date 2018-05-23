@@ -32,6 +32,6 @@ module.exports = {
   devServer: {
     contentBase: 'docs',
     open: true,
-    host: "10.0.1.13"
+    host: "0.0.0.0"
   }
 };

@@ -77,13 +77,16 @@ export class ResultView extends View {
     this._btnTweet = new CcButton(187, 35, "Tweet");
     this._btnTweet.x = GameConfig.STAGE_WIDTH >> 1;
     this._btnTweet.y = 495 - 133;
-    this._btnTweet.on("click", (): void => {
-      const url: string =
-        "https://twitter.com/?status=ColorCreate SCORE : " +
-        roundTotal +
-        " %23ColorCreate %23createjsjp";
-      window.open(url);
-    });
+    this._btnTweet.on(
+      "click",
+      (): void => {
+        const url: string =
+          "https://twitter.com/?status=ColorCreate SCORE : " +
+          roundTotal +
+          " %23ColorCreate %23createjsjp";
+        window.open(url);
+      }
+    );
 
     this._btnTweet.visible = true;
 
@@ -92,9 +95,12 @@ export class ResultView extends View {
     this._btnRetry.y = 545 - 133;
     this.addChild(this._btnRetry);
 
-    this._btnRetry.on("click", (): void => {
-      this.dispatchEvent("retry", this);
-    });
+    this._btnRetry.on(
+      "click",
+      (): void => {
+        this.dispatchEvent("retry", this);
+      }
+    );
 
     textResult.alpha = 0;
     createjs.Tween.get(textResult)

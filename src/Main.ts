@@ -54,23 +54,32 @@ export class Main {
     const titleView: TitleView = new TitleView("title");
     titleView.addToStage(this.stage);
     this.manager.addView(titleView);
-    titleView.on("start", (): void => {
-      this.manager.gotoView("game");
-    });
+    titleView.on(
+      "start",
+      (): void => {
+        this.manager.gotoView("game");
+      }
+    );
 
     const gameView: GameView = new GameView("game");
     gameView.addToStage(this.stage);
     this.manager.addView(gameView);
-    gameView.on("result", (event: any): void => {
-      this.manager.gotoView("result", [(<GameView>event.target).scoreList]);
-    });
+    gameView.on(
+      "result",
+      (event: any): void => {
+        this.manager.gotoView("result", [(<GameView>event.target).scoreList]);
+      }
+    );
 
     const resultView: ResultView = new ResultView("result");
     resultView.addToStage(this.stage);
     this.manager.addView(resultView);
-    resultView.on("retry", (): void => {
-      this.manager.gotoView("game");
-    });
+    resultView.on(
+      "retry",
+      (): void => {
+        this.manager.gotoView("game");
+      }
+    );
 
     this.manager.gotoView("title");
 

@@ -39,7 +39,7 @@ export class TargetReticle extends createjs.Container {
     const sin: number[] = [];
     const split: number = 3;
     for (let j = 0; j < split; j++) {
-      const theta: number = -Math.PI / 2 + j * Math.PI * 2 / split;
+      const theta: number = -Math.PI / 2 + (j * Math.PI * 2) / split;
       cos[j] = Math.cos(theta);
       sin[j] = Math.sin(theta);
     }

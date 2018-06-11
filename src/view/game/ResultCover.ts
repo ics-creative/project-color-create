@@ -122,9 +122,12 @@ export class ResultCover extends createjs.Container {
     this._btnNext = new CcButton(187, 35, "Next Round");
     this._btnNext.x = GameConfig.STAGE_WIDTH / 2;
     this._btnNext.y = 534 - 133;
-    this._btnNext.addEventListener("click", (): void => {
-      this.dispatchEvent("next", this);
-    });
+    this._btnNext.addEventListener(
+      "click",
+      (): void => {
+        this.dispatchEvent("next", this);
+      }
+    );
     this.addChild(this._btnNext);
 
     this._isPlaying = false;

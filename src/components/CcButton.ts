@@ -19,21 +19,27 @@ export class CcButton extends createjs.Container {
     const btnShape = UiUtil.getRoundRectShape(width, height, 5, "#FFFFFF", 1);
     this.addChild(btnShape);
 
-    btnShape.on("mousedown", (event: createjs.MouseEvent): void => {
-      createjs.Tween.get(btnShape, { override: true }).to(
-        { alpha: 0.5 },
-        250,
-        createjs.Ease.cubicOut
-      );
-    });
+    btnShape.on(
+      "mousedown",
+      (event: createjs.MouseEvent): void => {
+        createjs.Tween.get(btnShape, { override: true }).to(
+          { alpha: 0.5 },
+          250,
+          createjs.Ease.cubicOut
+        );
+      }
+    );
 
-    btnShape.on("mouseup", (): void => {
-      createjs.Tween.get(btnShape, { override: true }).to(
-        { alpha: 1.0 },
-        250,
-        createjs.Ease.cubicOut
-      );
-    });
+    btnShape.on(
+      "mouseup",
+      (): void => {
+        createjs.Tween.get(btnShape, { override: true }).to(
+          { alpha: 1.0 },
+          250,
+          createjs.Ease.cubicOut
+        );
+      }
+    );
     this._btnShape = btnShape;
 
     UiUtil.addText(

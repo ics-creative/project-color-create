@@ -137,7 +137,7 @@ export class GameView extends View {
     this.centerPointY =
       215 + 90 - 133 + ((GameConfig.STAGE_HEIGHT - (215 + 90 - 133)) >> 1);
     this.particleRange = 150;
-    this.thetaDelay = Math.PI * 2 / 3;
+    this.thetaDelay = (Math.PI * 2) / 3;
 
     this.usedCircles = [];
     this.currentParticleList = [];
@@ -191,9 +191,12 @@ export class GameView extends View {
     this.cover = new ResultCover();
     this.cover.alpha = 0.0;
     this.addChild(this.cover);
-    this.cover.on("next", (): void => {
-      this.next();
-    });
+    this.cover.on(
+      "next",
+      (): void => {
+        this.next();
+      }
+    );
 
     this.round = this.ROUND_MAX;
     this.scoreList = [];
@@ -516,7 +519,7 @@ export class GameView extends View {
     const score: number = (rP + gP + bP) / 3;
     const ss: number = score >> 2;
     const totalScore: number =
-      ss * ss * ss * (100 + this.timeLeft * this.timeLeft) / 1000;
+      (ss * ss * ss * (100 + this.timeLeft * this.timeLeft)) / 1000;
 
     const scoreData: ScoreData = new ScoreData();
     scoreData.time = this.timeLeft;

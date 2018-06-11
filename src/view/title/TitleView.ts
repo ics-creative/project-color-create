@@ -21,9 +21,12 @@ export class TitleView extends View {
     this._btnStart.y = 495 - 133;
     this.addChild(this._btnStart);
 
-    this._btnStart.on("click", (): void => {
-      this.dispatchEvent("start", this);
-    });
+    this._btnStart.on(
+      "click",
+      (): void => {
+        this.dispatchEvent("start", this);
+      }
+    );
 
     UiUtil.addText(
       this,
@@ -42,6 +45,26 @@ export class TitleView extends View {
       350 - 133,
       "Drag with 3 Fingers"
     );
+
+    if (createjs.Touch.isSupported() === false) {
+      UiUtil.addText(
+        this,
+        "24px " + GameConfig.FONT_NAME,
+        "#FF0000",
+        GameConfig.STAGE_WIDTH >> 1,
+        350 - 80,
+        "WARN"
+      );
+
+      UiUtil.addText(
+        this,
+        "12px " + GameConfig.FONT_NAME,
+        "#FF0000",
+        GameConfig.STAGE_WIDTH >> 1,
+        350 - 60,
+        "Game is able to play only TOUCH device."
+      );
+    }
 
     UiUtil.addText(
       this,

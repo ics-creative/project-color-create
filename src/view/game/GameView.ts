@@ -21,11 +21,11 @@ export class GameView extends View {
 
   //system
   /*
-	 * 0...カウントダウン中
-	 * 1...受付中
-	 * 2...操作中
-	 * 3...結果表示中
-	 */
+   * 0...カウントダウン中
+   * 1...受付中
+   * 2...操作中
+   * 3...結果表示中
+   */
   private state: number;
   private round: number;
   public scoreList: ScoreData[];
